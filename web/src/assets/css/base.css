@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+html {
+    font-size: 12px;
+}
+/*清除浮动代码*/
+.clearfloat:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.clearfloat{zoom:1}
+
+
+/* @media screen and(){
+    html{
+        font-size: 
+    }
+} */
+
+
+
+ul {
+    list-style: none;
+}
+
+.container {
+    width: 90%;
+    margin:0 5%;
+}
+
+.m-1 {
+    margin: 1rem;
+}
+
+.mlr-1 {
+    margin: 0 1rem;
+}
+
+.mtb-1 {
+    margin: 1rem 0;
+}
