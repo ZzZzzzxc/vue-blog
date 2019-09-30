@@ -1,7 +1,8 @@
 <!--  -->
 <template>
-  <div class="header">
+  <div id="header" ref="change">
     <Nav />
+
     <div class="container">
       <div class="title">Title</div>
       <div class="sub-title">我干了什么 究竟拿了时间换了什么</div>
@@ -23,13 +24,32 @@ export default {
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
-  watch: {},
+  watch: {
+    $route(to, from) {
+      console.log(to.path);
+      // let ele = document.getElementById("header");
+      let ele = this.$refs.change;
+      if (to.path === "/archieve") {
+        ele.style.height = "20rem";
+      } else {
+        ele.style.height = "34rem";
+      }
+    }
+  },
   //方法集合
   methods: {},
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    // let ele = document.getElementById("header");
+    let ele = this.$refs.change;
+    console.log(ele);
+    if (this.$route.path === "/archieve") {
+      console.log(this.$route.path)
+      ele.style.height = "20rem";
+    }
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -40,9 +60,9 @@ export default {
 };
 </script>
 <style  scoped>
-.header {
-  position: absolute;
-  top: 0;
+#header {
+  position: relative;
+  /* top: -5rem; */
   background-image: url("../assets/home-bg.jpg");
   height: 34rem;
   width: 100%;
@@ -55,14 +75,12 @@ export default {
 }
 
 .container {
-  margin-top: 5rem;
-  /* position: absolute; */
-  margin-top: 30%;
+  padding-top: 5rem;
 }
 
 .title {
   color: #fff;
-  font-size: 8rem;
+  font-size: 6rem;
   text-align: center;
   font-weight: bolder;
 }

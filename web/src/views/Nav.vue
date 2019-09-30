@@ -3,12 +3,12 @@
   <nav>
     <div class="container">
       <div class="logo">BLOG</div>
-      <ul v-show="isShowFlag">
-        <li>HOME</li>
-        <li>ABOUT</li>
-        <li>ARCHIEVE</li>
+      <ul v-show="isShow">
+        <router-link to="/" tag="li">HOME</router-link>
+        <router-link to="about" tag="li">ABOUT</router-link>
+        <router-link to="archieve" tag="li">ARCHIEVE</router-link>
       </ul>
-      <label class="btn" @click="isShowFlag?isShowFlag = !isShowFlag:isShowFlag = !isShowFlag">click</label>
+      <div class="btn"  @click.stop="didClickMenus">click</div>
     </div>
   </nav>
 </template>
@@ -23,19 +23,50 @@ export default {
   data() {
     //这里存放数据
     return {
-      isShowFlag:false
+      isShow:true,
+      screenWidth: document.body.clientWidth
     };
   },
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
-  watch: {},
+  watch: {
+    screenWidth(val) {
+      this.screenWidth = val;
+      if(val > 1083){
+        this.isShow = true
+      }else{
+        this.isShow = false
+      }
+    }
+  },
   //方法集合
-  methods: {},
+  methods: {
+    didClickMenus(){
+      this.isShow=!this.isShow
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    const that = this;
+    window.onresize = () => {
+      return (() => {
+        // window.screenWidth = document.body.clientWidth;
+        // that.screenWidth = window.screenWidth;
+        that.screenWidth = document.body.clientWidth
+      })();
+    };
+    document.onclick = () => {
+      if (this.isShow && this.screenWidth<1083) {
+        this.isShow = false;
+      }
+    };
+    if(this.screenWidth < 1083){
+      this.isShow = false
+    }
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -64,14 +95,12 @@ nav {
 }
 @media screen and (max-width: 1100px) {
   ul {
-    /* display: none; */
     width: 12rem;
     position: absolute;
     right: 2rem;
     top: 5rem;
     background: white;
     color: gray;
-    z-index: -1;
   }
   li {
     width: 100%;
@@ -84,8 +113,8 @@ nav {
     display: none;
   }
   ul {
-  float: right;
-}
+    float: right;
+  }
   li {
     float: left;
     margin: 0 2rem;

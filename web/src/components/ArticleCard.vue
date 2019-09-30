@@ -1,14 +1,10 @@
 <!--  -->
 <template>
   <div class="card-body">
-    <div class="title">ABOUT ME</div>
-    <div class="avatar">
-      <img src="../assets/avatar-hux-ny.jpg" alt />
-    </div>
-    <div class="word">For the next quantum leap</div>
-    <div class="word">离开世界之前，一切都是过程</div>
-    <div class="social"></div> 
-    <div class="footer line"></div>
+    <h2>{{articles[index].title}}</h2>
+    <h3>{{articles[index].subTitle}}</h3>
+    <div class="description of">{{articles[index].description}}</div>
+    <i class="time">on{{articles[index].time}}</i>
   </div>
 </template>
 
@@ -19,9 +15,14 @@
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
+  props:{
+      articles:Array,
+      index:Number
+      },
   data() {
     //这里存放数据
-    return {};
+    return {
+    };
   },
   //监听属性 类似于data概念
   computed: {},
@@ -42,27 +43,29 @@ export default {
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style  scoped>
+<style scoped>
 .card-body {
   width: 98%;
-  margin: 2rem 1%;
+  margin: 1rem 1%;
   /* background: blue; */
   padding: 3%;
+  border-bottom: 0.1rem solid #a3a3a3;
 }
-.avatar {
-  margin: 2rem 0;
-  width: 70%;
+.card-body > * {
+  margin: 0.5rem 0;
 }
-img {
-  border-radius: 1rem;
+h2 {
+  font-size: 2.8rem;
 }
-.word{
-    color:#ccc;
-    font-size: 1.2rem;
-    margin: 0.5rem 0; 
+h3 {
+  font-size: 1.6rem;
 }
-.footer{
-    margin-top: 2rem;
-    position: relative;
+.description {
+  font-size: 1.4rem;
+  color: #a3a3a3;
+}
+.time {
+  font-size: 1.2rem;
+  color: #ccc;
 }
 </style>

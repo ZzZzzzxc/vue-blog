@@ -36,7 +36,9 @@ function scrollFunc(e) {
     }
   }
   //到顶部时恢复导航栏
-  if (document.documentElement.scrollTop < 50) {
+  let top = document.documentElement.scrollTop || document.body.scrollTop;
+  window.console.log(top)
+  if (top <= 100) {
     nav[0].style.background = "rgba(0,0,0,0)";
     nav[0].style.color = "white";
   }

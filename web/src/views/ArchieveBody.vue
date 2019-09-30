@@ -1,24 +1,27 @@
+<!--  -->
 <template>
-<div >
-    <Header/>
-    <router-view/>
-    <Footer/>
-    <!-- <BackToTop/> -->
+<div class='body'>
+    <div class="container">
+        <div class="row clearfloat">
+            <TagListPlus/>
+            <ArticleList/>
+        </div>
+    </div>
 </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import Header from './Header'
-import Footer from './Footer'
-// import BackToTop from '../components/BackToTop'
+
+import TagListPlus from './TagListPlus'
+import ArticleList from './ArticleList'
 export default {
 //import引入的组件需要注入到对象中才能使用
+
 components: {
-    Header,
-    Footer
-    // BackToTop
+    TagListPlus,
+    ArticleList
 },
 data() {
 //这里存放数据
@@ -52,5 +55,11 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
 }
 </script>
 <style  scoped>
+.row{
+    width: 64%;
+    margin:0 18%;
+    height: 100%;
+    /* background: red; */
+}
 
 </style>
