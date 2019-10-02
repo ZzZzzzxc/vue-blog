@@ -12,7 +12,7 @@
       :scrollStyle="prop.scrollStyle"
     ></mavon-editor>
     <!-- 编辑 -->
-    <mavon-editor v-model="context" :toolbars="toolbars"  />
+    <!-- <mavon-editor v-model="context" :toolbars="toolbars"  /> -->
   </div>
 </template>
 
@@ -24,7 +24,9 @@ export default {
   data() {
     //这里存放数据
     return {
-      context: "# add ", //输入的数据
+      context: `# add 
+      \`\`loream\`\`
+      `, //输入的数据
       toolbars: {
         bold: true, // 粗体
         italic: true, // 斜体
@@ -87,8 +89,14 @@ export default {
 #body {
   width: 92%;
   margin: 0 4%;
-  height: 1px;
   /* height: 100%; */
   /* background: gold; */
+}
+.md{
+  display: block;
+  max-width: 100%;
+  min-height:25rem;
+  min-width:25rem;
+  font-size: 2rem;
 }
 </style>

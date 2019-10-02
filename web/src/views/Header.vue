@@ -46,7 +46,7 @@ export default {
     let ele = this.$refs.change;
     console.log(ele);
     if (this.$route.path === "/archieve") {
-      console.log(this.$route.path)
+      console.log(this.$route.path);
       ele.style.height = "20rem";
     }
   },
@@ -73,7 +73,11 @@ export default {
   -o-background-size: cover;
   background-position: center 50%;
 }
-
+@media screen and (max-width: 799px) {
+  #header {
+    height: 20rem;
+  }
+}
 .container {
   padding-top: 5rem;
 }
@@ -89,4 +93,5 @@ export default {
   font-size: 2rem;
   text-align: center;
 }
+
 </style>

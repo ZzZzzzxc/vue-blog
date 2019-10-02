@@ -83,4 +83,19 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
     /* background: green; */
     /* height: 1000px; */
 }
+@media screen and (max-width: 768px) {
+  .row-1 {
+    display: none;
+  }
+  .row-3 {
+    width: 98%;
+    margin: 0 1%;
+    float: left;
+  }
+  .row{
+    width: 94%;
+    margin:0 3%;
+    height: 100%;
+}
+}
 </style>

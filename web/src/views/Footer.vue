@@ -1,10 +1,8 @@
 <!--  -->
 <template>
   <div class="footer">
-
-      <div class="copyright">Copyright © Hux Blog 2019</div>
-      <div class="power">Powered by Hux Blog</div>
-
+    <div class="copyright">Copyright © Hux Blog 2019</div>
+    <div class="power">Powered by Hux Blog</div>
   </div>
 </template>
 
@@ -41,9 +39,19 @@ export default {
 <style  scoped>
 .footer {
   width: 100%;
-  padding:6rem 30%;
+  padding: 6rem 30%;
   height: 20rem;
   /* background: red; */
   text-align: center;
+}
+
+@media screen and (max-width: 799px) {
+  .footer {
+    width: 100%;
+    padding: 2rem 30%;
+    height: 10rem;
+    /* background: red; */
+    text-align: center;
+  }
 }
 </style>

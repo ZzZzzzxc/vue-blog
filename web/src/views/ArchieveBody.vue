@@ -61,5 +61,17 @@ activated() {}, //如果页面有keep-alive缓存功能，这个函数会触发
     height: 100%;
     /* background: red; */
 }
+@media screen and (max-width: 768px){
+    .container{
+        width: 90%;
+        margin:0 5%;
+    }
+    .row{
+    width: 90%;
+    margin:0 5%;
+    height: 100%;
+    /* background: red; */
+}
+}
 
 </style>
