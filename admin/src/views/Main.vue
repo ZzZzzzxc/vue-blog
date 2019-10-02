@@ -16,6 +16,10 @@
             <el-menu-item index="/articles/create">新建文章</el-menu-item>
             <el-menu-item index="/articles/list">文章列表</el-menu-item>
           </el-menu-item-group>
+          <el-menu-item-group>
+            <template slot="title">About Me</template>
+            <el-menu-item index="/about/edit">About Me</el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
 
         <el-submenu index="3">

@@ -4,6 +4,7 @@ const schema = new mongoose.Schema(
   {
     tags: [{ type: mongoose.SchemaTypes.ObjectId, ref: "Tag" }],
     title: { type: String },
+    subTitle: { type: String },
     description: { type: String },
     context: { type: String },
     createTime: { type: String },

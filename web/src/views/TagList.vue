@@ -21,64 +21,8 @@ export default {
     return {
       tagList: [
         {
-          name: "JavaScript",
-          num: 15
-        },
-        {
-          name: "Java",
-          num: 2
-        },
-        {
-          name: "Node.js",
-          num: 5
-        },
-        {
-          name: "Vue",
-          num: 62
-        },
-        {
-          name: "React",
-          num: 11
-        },
-        {
-          name: "CSS",
-          num: 3
-        },
-        {
-          name: "HTML",
-          num: 2
-        },
-        {
-          name: "Canvas",
-          num: 1
-        },
-        {
-          name: "LOL",
-          num: 8
-        },
-        {
-          name: "Http",
-          num: 9
-        },
-        {
-          name: "Mongo",
-          num: 23
-        },
-        {
-          name: "Dota",
-          num: 12
-        },
-        {
-          name: "Yaso",
-          num: 45
-        },
-        {
-          name: "var",
-          num: 33
-        },
-        {
-          name: "let",
-          num: 22
+          name: "",
+          num: Number
         }
       ]
     };
@@ -92,11 +36,17 @@ export default {
   methods: {
     tagSort(){
       this.tagList=this.tagList.sort((l,r)=>r.num-l.num)
-    }
+    },
+    async fetchTags() {
+      const res = await this.$http.get("tags/list");
+      this.tagList = res.data;
+      this.tagSort()
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.tagSort()
+    this.fetchTags()
+    
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},

@@ -20,65 +20,9 @@ export default {
     return {
       tagList: [
         {
-          name: "JavaScript",
-          num: 15
+          name: "",
+          num: Number
         },
-        {
-          name: "Java",
-          num: 2
-        },
-        {
-          name: "Node.js",
-          num: 5
-        },
-        {
-          name: "Vue",
-          num: 62
-        },
-        {
-          name: "React",
-          num: 11
-        },
-        {
-          name: "CSS",
-          num: 3
-        },
-        {
-          name: "HTML",
-          num: 2
-        },
-        {
-          name: "Canvas",
-          num: 1
-        },
-        {
-          name: "LOL",
-          num: 8
-        },
-        {
-          name: "Http",
-          num: 9
-        },
-        {
-          name: "Mongo",
-          num: 23
-        },
-        {
-          name: "Dota",
-          num: 12
-        },
-        {
-          name: "Yaso",
-          num: 45
-        },
-        {
-          name: "var",
-          num: 33
-        },
-        {
-          name: "let",
-          num: 22
-        }
       ]
     };
   },
@@ -89,6 +33,7 @@ export default {
   //方法集合
   methods: {
     tagSort() {
+      console.log('tagSort')
       this.tagList = this.tagList.sort((l, r) => r.num - l.num);
     },
     colorful() {
@@ -96,7 +41,7 @@ export default {
       for(let i =0 ;i <ele.length;i++){
           if(i<2){
               ele[i].$el.style.background = 'rgba(47, 147, 180, 1)'
-          }else if(i<6){
+          }else if(i<3){
               ele[i].$el.style.background = 'rgba(47, 147, 180, 0.7)'
           }else{
               ele[i].$el.style.background = 'rgba(187, 187, 238, 0.8)'
@@ -104,11 +49,16 @@ export default {
       }
     //   ele[0].style.background = 'red'
     //   console.log(ele[0].$el.style);
-    }
+    },
+     async fetchTags() {
+      const res = await this.$http.get("tags/list");
+      this.tagList = res.data;
+      this.tagSort();
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.tagSort();
+    this.fetchTags()  
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {

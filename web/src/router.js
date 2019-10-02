@@ -4,6 +4,7 @@ import Layout from './views/Layout.vue';
 import HomeBody from './views/HomeBody.vue';
 import AboutBody from './views/AboutBody.vue'
 import ArchieveBody from './views/ArchieveBody.vue'
+import ArticleShow from './views/ArticleShow.vue';
 
 Vue.use(Router)
 
@@ -30,6 +31,12 @@ export default new Router({
           path:'/archieve',
           name:'archieve',
           component:ArchieveBody
+        },
+        {
+          path:'/articles/:id',
+          name:'article',
+          props: true,
+          component:ArticleShow
         }
       ]
     }

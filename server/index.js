@@ -16,7 +16,7 @@ app.set('secret', 'i2u34y12oi3u4y8')
 //将实例app注入模块内
 require('./plugins/db')(app)
 require('./routes/admin')(app)
-// require('./routes/web')(app)
+require('./routes/web')(app)
 
 
 app.listen(3000,()=>{

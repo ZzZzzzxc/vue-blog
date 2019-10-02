@@ -17,53 +17,14 @@ export default {
     return {
       articles: [
         {
-          title: "Peter John Landin",
-          subTitle: "「计算机科学偶像」- 彼得·约翰·兰丁",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate assumenda, perspiciatis nostrum perferendis beatae maiores non quas officia accusamus quasi soluta temporibus quae sequi id quaerat nobis ullam officiis excepturi.",
-          time: "September 13, 2019"
-        },
-        {
-          title: "My Spacemacs Workflow",
-          subTitle: "From Vim to Spacemacs",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate assumenda, perspiciatis nostrum perferendis beatae maiores non quas officia accusamus quasi soluta temporibus quae sequi id quaerat nobis ullam officiis excepturi.",
-          time: "September 13, 2019"
-        },
-        {
-          title: "把「终端下的 Vim」作为 macOS Finder 的打开方式",
-          subTitle: "Open file with terminal Vim from the macOS Finder",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate assumenda, perspiciatis nostrum perferendis beatae maiores non quas officia accusamus quasi soluta temporibus quae sequi id quaerat nobis ullam officiis excepturi.",
-          time: "September 13, 2019"
-        },
-        {
-          title: "把「终端下的 Vim」作为 macOS Finder 的打开方式",
-          subTitle: "Open file with terminal Vim from the macOS Finder",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate assumenda, perspiciatis nostrum perferendis beatae maiores non quas officia accusamus quasi soluta temporibus quae sequi id quaerat nobis ullam officiis excepturi.",
-          time: "September 13, 2019"
-        },
-        {
-          title: "把「终端下的 Vim」作为 macOS Finder 的打开方式",
-          subTitle: "Open file with terminal Vim from the macOS Finder",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate assumenda, perspiciatis nostrum perferendis beatae maiores non quas officia accusamus quasi soluta temporibus quae sequi id quaerat nobis ullam officiis excepturi.",
-          time: "September 13, 2019"
-        },
-        {
-          title: "把「终端下的 Vim」作为 macOS Finder 的打开方式",
-          subTitle: "Open file with terminal Vim from the macOS Finder",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate assumenda, perspiciatis nostrum perferendis beatae maiores non quas officia accusamus quasi soluta temporibus quae sequi id quaerat nobis ullam officiis excepturi.",
-          time: "September 13, 2019"
-        },
-        {
-          title: "把「终端下的 Vim」作为 macOS Finder 的打开方式",
-          subTitle: "Open file with terminal Vim from the macOS Finder",
-          description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate assumenda, perspiciatis nostrum perferendis beatae maiores non quas officia accusamus quasi soluta temporibus quae sequi id quaerat nobis ullam officiis excepturi.",
-          time: "September 13, 2019"
+          tags:[],
+          title: "",
+          subTitle: "",
+          description:"",
+          context:'',
+          createTime: "",
+          lastEditTime:'',
+          _id:''
         },
       ]
     };
@@ -73,9 +34,16 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    async fetchArticles() {
+      const res = await this.$http.get("articles/list");
+      this.articles = res.data;
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.fetchArticles()
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前

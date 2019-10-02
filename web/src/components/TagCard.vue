@@ -46,5 +46,12 @@ export default {
   padding: 0 1rem;
   border-radius: 3rem;
   margin: 0.5rem 0.3rem;
+  font-size: 1.2rem;
+}
+.tag-body:hover{
+  height: 3.6rem;
+  line-height: 3.6rem;
+  font-size: 1.6rem;
+  box-shadow: 0.5rem 0.5rem 0.8rem #888
 }
 </style>

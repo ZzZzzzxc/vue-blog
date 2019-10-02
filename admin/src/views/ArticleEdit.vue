@@ -17,6 +17,9 @@
       <el-form-item label="标题">
         <el-input v-model="model.title"></el-input>
       </el-form-item>
+      <el-form-item label="sub标题">
+        <el-input v-model="model.subTitle"></el-input>
+      </el-form-item>
       <el-form-item label="描述">
         <el-input v-model="model.description"></el-input>
       </el-form-item>
@@ -64,6 +67,7 @@ export default {
       model: {
         tags: [],
         title: "",
+        subTitle:'',
         description: "",
         context: "",
         createTime: "",

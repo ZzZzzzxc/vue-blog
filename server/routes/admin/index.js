@@ -21,6 +21,7 @@ module.exports = app => {
 
   const mongoose = require("mongoose");
   const Tag = mongoose.model("Tag");
+  const Article = mongoose.model("Article");
   //通用CRUD接口
   //新建分类
   router.post("/", async (req, res) => {
@@ -72,6 +73,21 @@ module.exports = app => {
   });
   //删除分类
   router.delete("/:id", async (req, res) => {
+    //当删除文章时减少标签下的文章数
+    if (req.Model.modelName === "Article") {
+      Article.findById(req.params.id, function(err, docs) {
+        if (err) console.log(err);
+        for (let i = 0; i < docs.tags.length; i++) {
+          Tag.findByIdAndUpdate(
+            { _id: docs.tags[i] },
+            { $inc: { num: -1 } },
+            { new: true, upsert: true, usefindandmodify: false },
+            function() {}
+          );
+        }
+      });
+    }
+    //
     await req.Model.findByIdAndDelete(req.params.id, req.body);
     res.send({
       success: true

@@ -1,10 +1,11 @@
 <!--  -->
 <template>
-  <div class="card-body">
+  <div class="card-body" @click="$router.push(`/articles/${articles[index]._id}`)">
     <h2>{{articles[index].title}}</h2>
     <h3>{{articles[index].subTitle}}</h3>
-    <div class="description of">{{articles[index].description}}</div>
-    <i class="time">on{{articles[index].time}}</i>
+    <div class="description of">{{articles[index].context}}</div>
+    <p class="time">发布时间{{articles[index].createTime}}</p>
+    <p class="time"> 最后编辑时间{{articles[index].lastEditTime}}</p>
   </div>
 </template>
 
@@ -50,6 +51,9 @@ export default {
   /* background: blue; */
   padding: 3%;
   border-bottom: 0.1rem solid #a3a3a3;
+}
+.card-body:hover{
+  box-shadow: 0 1rem 0.8rem #888
 }
 .card-body > * {
   margin: 0.5rem 0;

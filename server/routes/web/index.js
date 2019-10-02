@@ -194,17 +194,24 @@ module.exports = app => {
 //       .lean();
 //     res.send(data);
 //   });
-//   // 页中导航详情
-//   router.get("/navs/:id", async (req, res) => {
-//     const data = await Nav.find();
-//     res.send(data);
-//   });
 
-//   // 首页轮播图详情
-//   router.get("/banners/:id", async (req, res) => {
-//     const data = await Banner.find();
-//     res.send(data);
-//   });
+  router.get("/tags/list", async (req, res) => {
+    const data = await Tag.find();
+    res.send(data);
+  });
+
+  router.get("/articles/list", async (req, res) => {
+    const data = await Article.find();
+    res.send(data);
+  });
+
+  router.get("/articles/:id", async (req, res) => {
+    const data = await Article.findById(req.params.id)
+      .populate("tags")
+      .lean();
+    res.send(data);
+  });
+
 
   app.use("/web/api", router);
 };
