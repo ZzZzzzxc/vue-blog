@@ -7,6 +7,7 @@
         <router-link to="/" tag="li">HOME</router-link>
         <router-link to="/about" tag="li">ABOUT</router-link>
         <router-link to="/archieve" tag="li">ARCHIEVE</router-link>
+        <router-link to="/todo" tag="li">TODO</router-link>
       </ul>
       <div class="btn"  @click.stop="didClickMenus">click</div>
     </div>

@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="body">
-    <ArticleCard v-for="(value,key) in articles" :key="key" :articles='articles' :index='key'/>
+    <ArticleCard v-for="(value,key) in articles" :key="key" :articles="articles" :index="key" />
   </div>
 </template>
 
@@ -12,20 +12,23 @@ import ArticleCard from "../components/ArticleCard";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: { ArticleCard },
+  props: {
+    id: {}
+  },
   data() {
     //这里存放数据
     return {
       articles: [
         {
-          tags:[],
+          tags: [],
           title: "",
           subTitle: "",
-          description:"",
-          context:'',
+          description: "",
+          context: "",
           createTime: "",
-          lastEditTime:'',
-          _id:''
-        },
+          lastEditTime: "",
+          _id: ""
+        }
       ]
     };
   },
@@ -36,13 +39,19 @@ export default {
   //方法集合
   methods: {
     async fetchArticles() {
-      const res = await this.$http.get("articles/list");
-      this.articles = res.data;
+      if (this.id) {
+        const res = await this.$http.get(`tags/${this.id}`);
+        this.articles = res.data[0].articlesList;
+        console.log(res.data[0].articlesList)
+      } else {
+        const res = await this.$http.get("articles/list");
+        this.articles = res.data;
+      }
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.fetchArticles()
+    this.fetchArticles();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},

@@ -94,6 +94,7 @@ export default {
     //   // console.log(render);
     //   this.contentHtml = render;
     // },
+    
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
@@ -116,14 +117,20 @@ export default {
 .container {
   width: 70%;
   margin: 0 15%;
+  padding: 6rem 0;
 }
 @media screen and (max-width: 768px) {
   .container {
     width: 90%;
     margin: 0 5%;
+    padding: 2rem 0;
   }
 }
-
+@media screen and (max-width: 799px) {
+  /* .markdown-body {
+    font-size: 1rem
+  } */
+}
 /* .md {
   display: block;
   max-width: 100%;

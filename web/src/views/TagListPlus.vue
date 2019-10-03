@@ -21,7 +21,8 @@ export default {
       tagList: [
         {
           name: "",
-          num: Number
+          num: Number,
+          _id:''
         },
       ]
     };

@@ -5,6 +5,7 @@ import HomeBody from './views/HomeBody.vue';
 import AboutBody from './views/AboutBody.vue'
 import ArchieveBody from './views/ArchieveBody.vue'
 import ArticleShow from './views/ArticleShow.vue';
+import Todo from './views/Todo.vue'
 
 Vue.use(Router)
 
@@ -37,6 +38,17 @@ export default new Router({
           name:'article',
           props: true,
           component:ArticleShow
+        },
+        {
+          path:'/tags/:id',
+          name:'articleList',
+          props: true,
+          component:ArchieveBody
+        },
+        {
+          path:'/todo',
+          name:'todo',
+          component:Todo
         }
       ]
     }
