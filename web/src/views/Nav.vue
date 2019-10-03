@@ -5,8 +5,8 @@
       <div class="logo">BLOG</div>
       <ul v-show="isShow">
         <router-link to="/" tag="li">HOME</router-link>
-        <router-link to="about" tag="li">ABOUT</router-link>
-        <router-link to="archieve" tag="li">ARCHIEVE</router-link>
+        <router-link to="/about" tag="li">ABOUT</router-link>
+        <router-link to="/archieve" tag="li">ARCHIEVE</router-link>
       </ul>
       <div class="btn"  @click.stop="didClickMenus">click</div>
     </div>
@@ -88,6 +88,7 @@ nav {
   position: fixed;
   top: 0;
   transition: 0.9s;
+  
 }
 
 .logo {

@@ -72,6 +72,7 @@ export default {
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-position: center 50%;
+  
 }
 @media screen and (max-width: 799px) {
   #header {

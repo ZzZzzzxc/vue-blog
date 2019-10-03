@@ -24,7 +24,7 @@
         <el-input v-model="model.description"></el-input>
       </el-form-item>
       <el-form-item label="内容">
-        <mavon-editor v-model="model.context" :toolbars="toolbars" />
+        <mavon-editor v-model="model.context" :toolbars="toolbars" @change="changeData" />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -73,7 +73,8 @@ export default {
         createTime: "",
         lastEditTime: "",
         old:[],
-        new:[]
+        new:[],
+        contentHtml:''
       },
       tagList: [
         {
@@ -91,7 +92,14 @@ export default {
         ? this.$set(this.model, "lastEditTime", t)
         : (this.model.createTime = t);
     },
-    
+    //MD转HTML
+    changeData(value, render) {
+      //markdown
+      // console.log(value);
+      //html
+      // console.log(render);
+      this.model.contentHtml = render;
+    },
     async save() {
       let res;
       this.$set(this.model, "lastEditTime", new Date().toLocaleString());

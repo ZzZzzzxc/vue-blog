@@ -7,6 +7,7 @@ const schema = new mongoose.Schema(
     subTitle: { type: String },
     description: { type: String },
     context: { type: String },
+    contentHtml:{ type: String },
     createTime: { type: String },
     lastEditTime: {
       type: String
