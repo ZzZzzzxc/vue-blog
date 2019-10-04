@@ -3,11 +3,11 @@
   <div class="card-body">
     <div class="title">ABOUT ME</div>
     <div class="avatar">
-      <img src="../assets/avatar-hux-ny.jpg" alt />
+      <img src="../assets/avatar.jpg" alt />
     </div>
     <div class="word">For the next quantum leap</div>
     <div class="word">离开世界之前，一切都是过程</div>
-    <div class="social"></div> 
+    <div class="social"></div>
     <div class="footer line"></div>
   </div>
 </template>
@@ -48,21 +48,44 @@ export default {
   margin: 2rem 1%;
   /* background: blue; */
   padding: 3%;
+  box-shadow: 0.5rem 0.5rem 1.8rem #888;
+}
+.card-body>*{
+  text-align: center;
+}
+.title {
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 .avatar {
-  margin: 2rem 0;
+  margin: 4rem auto;
   width: 70%;
+  transition: 0.5s;
 }
+
 img {
+  /* border-radius: 50%; */
   border-radius: 1rem;
+  transition: 0.5s;
+  transform:rotate(-10deg);
 }
-.word{
-    color:#ccc;
-    font-size: 1.2rem;
-    margin: 0.5rem 0; 
+.avatar:hover{
+  width: 80%;
+  margin: 2rem auto;
 }
-.footer{
-    margin-top: 2rem;
-    position: relative;
+img:hover {
+  box-shadow: 0.7rem 0.8rem 1rem #dc5bf0, -1rem -1rem 2rem #c9c91e;
+  /* border-radius: 1rem; */
+  border-radius: 50%;
+  transform:rotate(360deg);
+}
+.word {
+  color: #ccc;
+  font-size: 1.4rem;
+  margin: 0.5rem 0;
+}
+.footer {
+  margin-top: 2rem;
+  position: relative;
 }
 </style>

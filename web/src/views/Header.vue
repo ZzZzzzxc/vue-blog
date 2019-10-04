@@ -4,8 +4,9 @@
     <Nav />
 
     <div class="container">
-      <div class="title">Title</div>
-      <div class="sub-title">我干了什么 究竟拿了时间换了什么</div>
+      
+      <div class="title">Zhangxc Blog</div>
+      <div class="sub-title"><div id="word-box" ></div></div>
     </div>
   </div>
 </template>
@@ -14,6 +15,7 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import Nav from "./Nav";
+import Input from "../assets/animate/word";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: { Nav },
@@ -49,11 +51,15 @@ export default {
       console.log(this.$route.path);
       ele.style.height = "20rem";
     }
+    //打字特效
+    Input.input('我干了什么 究竟拿了时间换了什么','Hello World')
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
+  updated() {
+    
+  }, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
@@ -71,8 +77,14 @@ export default {
   background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
-  background-position: center 50%;
-  
+  background-position: center 60%;
+  transition: 2.5s;
+  background-size: 100%;
+}
+
+#header:hover {
+  background-size: 120%;
+  /* background-position: center 20%; */
 }
 @media screen and (max-width: 799px) {
   #header {
@@ -94,5 +106,4 @@ export default {
   font-size: 2rem;
   text-align: center;
 }
-
 </style>

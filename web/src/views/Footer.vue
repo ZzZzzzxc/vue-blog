@@ -1,8 +1,8 @@
 <!--  -->
 <template>
   <div class="footer">
-    <div class="copyright">Copyright © Hux Blog 2019</div>
-    <div class="power">Powered by Hux Blog</div>
+    <div class="copyright">Copyright © Zhangxc Blog 2019</div>
+    <div class="power">Powered by Zhangxc Blog</div>
   </div>
 </template>
 
@@ -39,10 +39,11 @@ export default {
 <style  scoped>
 .footer {
   width: 100%;
-  padding: 6rem 30%;
+  padding: 10rem 30%;
   height: 20rem;
   /* background: red; */
   text-align: center;
+  font-size: 1.6rem;
 }
 
 @media screen and (max-width: 799px) {

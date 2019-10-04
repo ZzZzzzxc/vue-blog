@@ -6,10 +6,14 @@ import AboutBody from './views/AboutBody.vue'
 import ArchieveBody from './views/ArchieveBody.vue'
 import ArticleShow from './views/ArticleShow.vue';
 import Todo from './views/Todo.vue'
+import Error from './views/Error.vue'
+
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -51,6 +55,22 @@ export default new Router({
           component:Todo
         }
       ]
+    },
+    {
+      path: '*',
+        name: 'notfount',
+        component: Error
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
+})  
+
+export default router

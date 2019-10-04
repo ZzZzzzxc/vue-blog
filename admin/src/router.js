@@ -3,6 +3,8 @@ import Router from "vue-router";
 
 import Main from "./views/Main.vue";
 
+import Todo from './views/Todo.vue'
+
 import TagEdit from "./views/TagEdit.vue";
 import TagList from "./views/TagList.vue";
 
@@ -22,8 +24,11 @@ const router =  new Router({
     {
       path: "/",
       name: "main",
+      redirect: '/todo',
       component: Main,
       children: [
+
+        { path: "/todo", component: Todo },
 
         { path: "/tags/create", component: TagEdit },
         { path: "/tags/edit/:id", component: TagEdit, props: true },

@@ -22,8 +22,8 @@ export default {
         {
           name: "",
           num: Number,
-          _id:''
-        },
+          _id: ""
+        }
       ]
     };
   },
@@ -34,41 +34,47 @@ export default {
   //方法集合
   methods: {
     tagSort() {
-      console.log('tagSort')
+      console.log("tagSort");
       this.tagList = this.tagList.sort((l, r) => r.num - l.num);
     },
     colorful() {
       let ele = this.$refs.list;
-      for(let i =0 ;i <ele.length;i++){
-          if(i<2){
-              ele[i].$el.style.background = 'rgba(47, 147, 180, 1)'
-          }else if(i<3){
-              ele[i].$el.style.background = 'rgba(47, 147, 180, 0.7)'
-          }else{
-              ele[i].$el.style.background = 'rgba(187, 187, 238, 0.8)'
-          }
+      console.log(ele[0]);
+      for (let i = 0; i < ele.length; i++) {
+        if (i < 1) {
+          ele[i].$el.style.background = "rgba(255, 134, 50, .8)";
+        }
+        if (i >= 1) {
+          ele[i].$el.style.background = "rgba(47, 147, 180, 1)";
+        }
+        if (i >= 2) {
+          ele[i].$el.style.background = "rgba(47, 147, 180, 0.7)";
+        }
+        if (i > 3) {
+          ele[i].$el.style.background = "rgba(187, 187, 238, 0.9)";
+        }
       }
-    //   ele[0].style.background = 'red'
-    //   console.log(ele[0].$el.style);
+      //   ele[0].style.background = 'red'
+      //   console.log(ele[0].$el.style);
     },
-     async fetchTags() {
+    async fetchTags() {
       const res = await this.$http.get("tags/list");
       this.tagList = res.data;
       this.tagSort();
-    },
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.fetchTags()  
+    this.fetchTags();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {
-    this.colorful();
-  },
+  mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {}, //生命周期 - 更新之后
+  updated() {
+    this.colorful();
+  }, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
@@ -80,14 +86,17 @@ export default {
   margin: 2rem 1%;
   /* background: blue; */
   padding: 3%;
+  box-shadow: 0.5rem 0.5rem 1.8rem #888;
 }
 .tag-card-body /deep/ .tag-body {
-  background: green;
   color: white;
   border: none;
-  font-weight: 500;
+  font-weight: bold;
 }
 
+.tag-card-body /deep/ .tag-body:hover {
+  box-shadow: 0.2rem 0.2rem 0.8rem #ac4a939c;
+}
 .footer {
   margin-top: 2rem;
   position: relative;

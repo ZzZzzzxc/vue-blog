@@ -23,31 +23,29 @@ export default {
         {
           name: "",
           num: Number,
-          _id:''
+          _id: ""
         }
       ]
     };
   },
   //监听属性 类似于data概念
-  computed: {
-  },
+  computed: {},
   //监控data中的数据变化
   watch: {},
   //方法集合
   methods: {
-    tagSort(){
-      this.tagList=this.tagList.sort((l,r)=>r.num-l.num)
+    tagSort() {
+      this.tagList = this.tagList.sort((l, r) => r.num - l.num);
     },
     async fetchTags() {
       const res = await this.$http.get("tags/list");
       this.tagList = res.data;
-      this.tagSort()
-    },
+      this.tagSort();
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.fetchTags()
-    
+    this.fetchTags();
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -66,10 +64,14 @@ export default {
   margin: 2rem 1%;
   /* background: blue; */
   padding: 3%;
+  box-shadow: 0.5rem 0.5rem 1.8rem #888;
 }
 
 .title {
   margin-bottom: 2rem;
+
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 .footer {
   margin-top: 2rem;

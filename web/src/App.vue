@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <style>
-#app{
-  
+/* 进度条颜色 */
+#nprogress .bar {
+  background: white !important; 
 }
 </style>

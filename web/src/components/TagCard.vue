@@ -1,9 +1,8 @@
-<!--  -->
 <template>
   <div
     class="tag-body"
     @click="$router.push(`/tags/${tagList[index]._id}`)"
-  >{{tagList[index].name}} > {{tagList[index].num}}</div>
+  >{{tagList[index].name}} 🤙 {{tagList[index].num}}</div>
 </template>
 
 <script>
@@ -43,18 +42,16 @@ export default {
 <style  scoped>
 .tag-body {
   display: inline-block;
-  height: 2.6rem;
-  line-height: 2.6rem;
-  border: 0.1rem solid gray;
+  height: 3rem;
+  line-height: 3rem;
+  border: 0.1rem solid #888;
   padding: 0 1rem;
   border-radius: 3rem;
-  margin: 0.5rem 0.3rem;
+  margin: 0.8rem 0.8rem;
   font-size: 1.2rem;
+  font-weight: bold;
 }
 .tag-body:hover {
-  height: 3.6rem;
-  line-height: 3.6rem;
-  font-size: 1.6rem;
-  box-shadow: 0.5rem 0.5rem 0.8rem #888;
+  box-shadow: 0.2rem 0.2rem 0.8rem #888;
 }
 </style>
