@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="card-body">
-    <div class="title">ABOUT ME</div>
+    <div class="title">我</div>
     <div class="avatar">
       <img src="../assets/avatar.jpg" alt />
     </div>
@@ -45,10 +45,11 @@ export default {
 <style  scoped>
 .card-body {
   width: 98%;
-  margin: 2rem 1%;
+  margin: 5rem 1%;
   /* background: blue; */
   padding: 3%;
   box-shadow: 0.5rem 0.5rem 1.8rem #888;
+  transform: rotate(-5deg)
 }
 .card-body>*{
   text-align: center;

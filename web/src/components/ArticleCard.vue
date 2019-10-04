@@ -51,9 +51,10 @@ export default {
   /* background: blue; */
   padding: 3%;
   border-bottom: 0.1rem solid #a3a3a3;
+  transition: 0.2s;
 }
 .card-body:hover{
-  box-shadow: 0.1rem 0.1rem 1.8rem #888
+  box-shadow: 0.1rem 0.1rem 1.8rem #888;
 }
 .card-body > * {
   margin: 0.5rem 0;

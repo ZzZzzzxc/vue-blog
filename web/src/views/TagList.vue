@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="tag-card-body">
-    <div class="title">FEATURED TAGS</div>
+    <div class="title">标签云☁</div>
     <TagCard v-for="(value,key) in tagList" :key="key" :tagList="tagList" :index="key" />
     <div class="footer line"></div>
   </div>
@@ -65,11 +65,12 @@ export default {
   /* background: blue; */
   padding: 3%;
   box-shadow: 0.5rem 0.5rem 1.8rem #888;
+  transform: rotate(5deg)
 }
 
 .title {
   margin-bottom: 2rem;
-
+  text-align: center;
   font-size: 1.8rem;
   font-weight: bold;
 }

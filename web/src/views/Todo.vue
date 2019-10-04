@@ -11,7 +11,11 @@
                 <s>根据标签检索文章</s>
               </li>
               <li><s>添加打字特效</s></li>
-              <li>markdown编辑器的图片上传</li>
+              <li><s>初步整容</s></li>
+              <li><s>公告栏</s></li>
+              <li><s>回到顶部</s></li>
+              <li><s>markdown编辑器的图片上传</s></li>
+              <li>主题颜色切换</li>
               <li>404</li>
               <li>路由配置</li>
               <li>axios封装</li>

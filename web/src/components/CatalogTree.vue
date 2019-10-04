@@ -1,30 +1,25 @@
+<!--  -->
 <template>
   <div>
-    <Header />
-    <!-- <router-view :key="$route.path" /> -->
-    <transition name="fade">
-      <router-view :key="$route.path"></router-view>
-    </transition>
-    <Footer />
-    <!-- <BackToTop/> -->
-    <Notice/>
+    <div v-for="(child , key) in tree" :key="key">
+      <span @click="scroll" style="color:yellow;background:green">{{ child.tag }}{{ child.title }}{{ child.scrollTop }}</span>
+      <CatalogTreeItem :item="child " v-if="child.children" />
+    </div>
   </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import Header from "./Header";
-import Footer from "./Footer";
-import Notice from '../components/Notice'
-// import BackToTop from '../components/BackToTop'
+// import CatalogTreeItem from "./CatalogTreeItem";
 export default {
+  name: "CatalogTree",
+  props: {
+    tree: Array
+  },
   //import引入的组件需要注入到对象中才能使用
   components: {
-    Header,
-    Footer,
-    Notice
-    // BackToTop
+    // CatalogTreeItem
   },
   data() {
     //这里存放数据
@@ -35,12 +30,19 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    scroll() {
+      document.getElementsByClassName('markdown-body').scrollTop = '500'
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
-  beforeCreate() {}, //生命周期 - 创建之前
+  beforeCreate() {
+    this.$options.components.CatalogTreeItem = () =>
+      import("./CatalogTreeItem");
+  }, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
   updated() {}, //生命周期 - 更新之后
@@ -50,10 +52,4 @@ export default {
 };
 </script>
 <style  scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .1s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 </style>

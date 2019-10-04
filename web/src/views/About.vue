@@ -24,9 +24,7 @@ export default {
   data() {
     //这里存放数据
     return {
-      context: `# add 
-      \`\`loream\`\`
-      `, //输入的数据
+      context:'我，宣布，这一页，我还没做', //输入的数据
       toolbars: {
         bold: true, // 粗体
         italic: true, // 斜体

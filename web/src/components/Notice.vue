@@ -1,31 +1,20 @@
+<!--  -->
 <template>
-  <div>
-    <Header />
-    <!-- <router-view :key="$route.path" /> -->
-    <transition name="fade">
-      <router-view :key="$route.path"></router-view>
-    </transition>
-    <Footer />
-    <!-- <BackToTop/> -->
-    <Notice/>
+  <div class="notice-body">
+      <div>^^</div>
+    <div class="title">公告牌</div>
+    <div class="start">没事，我就是想say个</div>
+    <div class="context">Hi💋</div>
   </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import Header from "./Header";
-import Footer from "./Footer";
-import Notice from '../components/Notice'
-// import BackToTop from '../components/BackToTop'
+
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {
-    Header,
-    Footer,
-    Notice
-    // BackToTop
-  },
+  components: {},
   data() {
     //这里存放数据
     return {};
@@ -50,10 +39,39 @@ export default {
 };
 </script>
 <style  scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .1s;
+.notice-body {
+  background: #ffffff;
+  width: 10rem;
+  padding: 1rem 1rem;
+  min-height: 20rem;
+  position: fixed;
+  text-align: center;
+  top: 40rem;
+  right: 1rem;
+  box-shadow: 0.1rem 0.1rem 1.8rem #888;
+  transform: rotate(-10deg);
+  transition: 1s ;
+  opacity: 0.8;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
+.notice-body:hover {
+    right: -4rem;
+}
+.title {
+  font-size: 2rem;
+  margin: 1rem 0;
+  font-weight: bolder;
+}
+.start {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+}
+.context {
+  font-size: 1.8rem;
+  margin: 1rem 0;
+}
+@media screen and (max-width: 1000px) {
+  .notice-body {
+    display: none;
+  }
 }
 </style>

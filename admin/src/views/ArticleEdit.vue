@@ -24,7 +24,13 @@
         <el-input v-model="model.description"></el-input>
       </el-form-item>
       <el-form-item label="内容">
-        <mavon-editor v-model="model.context" :toolbars="toolbars" @change="changeData" />
+        <mavon-editor
+          ref="md"
+          @imgAdd="$imgAdd"
+          v-model="model.context"
+          :toolbars="toolbars"
+          @change="changeData"
+        />
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
@@ -34,6 +40,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   props: {
     id: {}
@@ -67,14 +74,14 @@ export default {
       model: {
         tags: [],
         title: "",
-        subTitle:'',
+        subTitle: "",
         description: "",
         context: "",
         createTime: "",
         lastEditTime: "",
-        old:[],
-        new:[],
-        contentHtml:''
+        old: [],
+        new: [],
+        contentHtml: ""
       },
       tagList: [
         {
@@ -100,11 +107,19 @@ export default {
       // console.log(render);
       this.model.contentHtml = render;
     },
+    //上传图片
+    async $imgAdd(pos, $file) {
+      // 第一步.将图片上传到服务器.
+      let formdata = new FormData();
+      formdata.append("file", $file);
+      const res = await this.$http.post("upload", formdata);
+      this.$refs.md.$img2Url(pos, res.data.url);
+    },
     async save() {
       let res;
       this.$set(this.model, "lastEditTime", new Date().toLocaleString());
       this.model.new = this.model.tags;
-      console.log(this.model)
+      // console.log(this.model)
       if (this.id) {
         res = await this.$http.put(`rest/articles/${this.id}`, this.model);
       } else {
@@ -119,7 +134,7 @@ export default {
     async fetch() {
       const res = await this.$http.get(`rest/articles/${this.id}`);
       this.model = res.data;
-      this.model.old = res.data.tags
+      this.model.old = res.data.tags;
     },
     async fetchTags() {
       const res = await this.$http.get(`rest/tags`);
@@ -132,7 +147,6 @@ export default {
     this.fetchTags();
     this.id && this.fetch();
   },
-  destroyed() {
-  }
+  destroyed() {}
 };
 </script>

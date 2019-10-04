@@ -78,7 +78,7 @@ export default {
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-position: center 60%;
-  transition: 2.5s;
+  transition: 0.5s;
   background-size: 100%;
 }
 

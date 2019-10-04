@@ -2,14 +2,14 @@
 <template>
   <nav>
     <div class="container">
-      <div class="logo">BLOG</div>
+      <router-link tag='div' to="/" class="logo">BLOG</router-link>
       <ul v-show="isShow">
-        <router-link to="/" tag="li">HOME</router-link>
-        <router-link to="/about" tag="li">ABOUT</router-link>
-        <router-link to="/archieve" tag="li">ARCHIEVE</router-link>
+        <router-link to="/" tag="li">首页🈚</router-link>
+        <router-link to="/about" tag="li">至于我💦</router-link>
+        <router-link to="/archieve" tag="li">归档📃</router-link>
         <router-link to="/todo" tag="li">TODO</router-link>
       </ul>
-      <div class="btn"  @click.stop="didClickMenus">click</div>
+      <div class="btn"  @click.stop="didClickMenus">📃</div>
     </div>
   </nav>
 </template>
@@ -94,7 +94,9 @@ nav {
 
 .logo {
   float: left;
+  font-size: 2rem;
 }
+
 @media screen and (max-width: 1100px) {
   ul {
     width: 12rem;
@@ -108,6 +110,7 @@ nav {
     width: 100%;
     text-align: center;
     margin: 0 0;
+    
   }
 }
 @media screen and (min-width: 1100px) {
@@ -120,6 +123,7 @@ nav {
   li {
     float: left;
     margin: 0 2rem;
+    font-size: 1.4rem;
   }
 }
 

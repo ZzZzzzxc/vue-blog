@@ -1,30 +1,25 @@
+<!--  -->
 <template>
-  <div>
-    <Header />
-    <!-- <router-view :key="$route.path" /> -->
-    <transition name="fade">
-      <router-view :key="$route.path"></router-view>
-    </transition>
-    <Footer />
-    <!-- <BackToTop/> -->
-    <Notice/>
+  <div class>
+    <div v-for="(child,key) in item.children" :key="key">
+      <span>{{ child.tag }}{{ child.title }}{{ child.scrollTop }}</span>
+      <CatalogTree :tree="child.children" v-if="child.children" />
+    </div>
   </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import Header from "./Header";
-import Footer from "./Footer";
-import Notice from '../components/Notice'
-// import BackToTop from '../components/BackToTop'
+import CatalogTree from "./CatalogTree";
 export default {
+  name: "CatalogTreeItem",
+  props: {
+    item: Object
+  },
   //import引入的组件需要注入到对象中才能使用
   components: {
-    Header,
-    Footer,
-    Notice
-    // BackToTop
+    CatalogTree
   },
   data() {
     //这里存放数据
@@ -50,10 +45,4 @@ export default {
 };
 </script>
 <style  scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .1s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
 </style>
