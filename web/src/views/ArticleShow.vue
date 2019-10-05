@@ -1,10 +1,11 @@
 <!--  -->
 <template>
   <div class>
-    <div class="container">
+    <div class="container" :class="this.show?'container':'container-unshow'">
       <div class="markdown-body" v-html="model.contentHtml" />
     </div>
-    <div class="catalog">
+    <div class="show-btn" :class="this.show?'show-btn':'show-btn-unshow'" @click="isShow">{{word}}</div>
+    <div class="catalog" :class="this.show?'catalog':'unshow'">
       <div class="title">目录</div>
       <CatalogTree :tree="tree" />
     </div>
@@ -37,7 +38,8 @@ export default {
         title: "",
         contentHtml: ""
       },
-      tree: []
+      tree: [],
+      show: true
     };
   },
   //监听属性 类似于data概念
@@ -51,6 +53,9 @@ export default {
         scrollStyle: true
       };
       return data;
+    },
+    word() {
+      return this.show ? "close" : "open";
     }
   },
   //监控data中的数据变化
@@ -63,12 +68,14 @@ export default {
       this.$nextTick(function() {
         this.tree = catalog.catalog();
       });
+    },
+    isShow() {
+      this.show = !this.show;
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.fetch();
-    
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -84,8 +91,55 @@ export default {
 <style  scoped>
 .container {
   width: 70%;
+  /* margin: 0 15%; */
+  margin: 0 0 0 25%;
+  padding: 6rem 0;
+  transition: 0.2s;
+}
+.container-unshow {
+  width: 70%;
   margin: 0 15%;
   padding: 6rem 0;
+}
+.catalog {
+  background: rgba(121, 109, 255, 1);
+  display: block;
+  position: fixed;
+  top: 0rem;
+  font-size: 1.2rem;
+  width: 20%;
+  overflow: hidden;
+  height: 100%;
+  overflow-y: auto;
+  color: white;
+  /* left: -20%; */
+  left: 0;
+  transition: 0.2s;
+}
+.unshow {
+  left: -20%;
+  /* display: none; */
+}
+.show-btn {
+  position: fixed;
+  top: 90%;
+  left: 20%;
+  height: 4rem;
+  background: rgba(1, 1, 1, 0.1);
+  z-index: 1;
+  transition: 0.2s;
+  line-height: 4rem;
+  padding: 0 2rem;
+  font-size: 1.6rem;
+}
+.show-btn-unshow {
+  left: 0;
+}
+.title {
+  font-size: 1.8rem;
+  font-weight: bolder;
+  height: 4rem;
+  line-height: 4rem;
 }
 @media screen and (max-width: 768px) {
   .container {
@@ -98,12 +152,30 @@ export default {
   /* .markdown-body {
     font-size: 1rem
   } */
+
+  .catalog {
+    display: none;
+  }
+  .show-btn {
+    display: none;
+  }
 }
-.catalog{
-  background: red;
-  display: inline-block;
-  position: fixed;
-  top: 0rem;
-  font-size: 1.2rem;
+.catalog::-webkit-scrollbar {
+  width: 1.6rem;
+  height: 0.6rem;
+  background: transparent;
+}
+
+.catalog::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 0.4rem;
+}
+
+.catalog:hover::-webkit-scrollbar-thumb {
+  background: hsla(0, 0%, 53%, 0.4);
+}
+
+.catalog:hover::-webkit-scrollbar-track {
+  background: hsla(0, 0%, 53%, 0.1);
 }
 </style>

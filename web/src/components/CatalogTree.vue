@@ -2,7 +2,7 @@
 <template>
   <div>
     <div v-for="(child , key) in tree" :key="key">
-      <span @click="scroll" style="color:yellow;background:green">{{ child.tag }}{{ child.title }}{{ child.scrollTop }}</span>
+      <span @click="scroll(key)" :id="'title-'+key">{{ child.tag }}{{ child.title }}</span>
       <CatalogTreeItem :item="child " v-if="child.children" />
     </div>
   </div>
@@ -31,8 +31,17 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    scroll() {
-      document.getElementsByClassName('markdown-body').scrollTop = '500'
+    scroll(index) {
+      // window.scroll(0, this.tree[index].scrollTop);
+      window.scrollTo({
+        top: this.tree[index].scrollTop,
+        behavior: "smooth"
+      });
+      // console.log(document.getElementById('title-'+index).offsetTop   )
+      // console.log(this.tree[index].scrollTop)
+      // console.log(this.tree[index+1].scrollTop)
+      // console.log(document.documentElement.scrollTop-100)
+      // console.log(this.$route)
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -52,4 +61,22 @@ export default {
 };
 </script>
 <style  scoped>
+span {
+  display: inline-block;
+  width: 100%;
+  margin: 0.4rem 0;
+  padding: 0 1rem;
+  height: 3rem;
+  line-height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  transition: 0.2s;
+}
+span:hover {
+  background: rgba(50, 109, 255, 1);
+  font-weight: bolder;
+  
+}
 </style>

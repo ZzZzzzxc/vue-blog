@@ -105,6 +105,7 @@ nav {
     top: 5rem;
     background: white;
     color: gray;
+     box-shadow: 0.5rem 0.5rem 1.8rem #888;
   }
   li {
     width: 100%;

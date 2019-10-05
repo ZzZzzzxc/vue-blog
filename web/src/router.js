@@ -34,7 +34,7 @@ const router = new Router({
         },
         {
           path:'/archieve',
-          name:'archieve',
+          name:'article',
           component:ArchieveBody
         },
         {

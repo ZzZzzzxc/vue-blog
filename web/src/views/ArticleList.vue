@@ -46,6 +46,7 @@ export default {
       } else {
         const res = await this.$http.get("articles/list");
         this.articles = res.data;
+        this.articles.reverse()
       }
     }
   },

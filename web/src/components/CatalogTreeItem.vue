@@ -2,7 +2,7 @@
 <template>
   <div class>
     <div v-for="(child,key) in item.children" :key="key">
-      <span>{{ child.tag }}{{ child.title }}{{ child.scrollTop }}</span>
+      <span @click="scroll(key)">{{ child.tag }}{{ child.title }}</span>
       <CatalogTree :tree="child.children" v-if="child.children" />
     </div>
   </div>
@@ -30,7 +30,16 @@ export default {
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    scroll(index) {
+      // window.scroll(0, this.item.children[index].scrollTop);
+      window.scrollTo({
+        top: this.item.children[index].scrollTop,
+        behavior: "smooth"
+      });
+      // console.log(this.$route);
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
@@ -45,4 +54,20 @@ export default {
 };
 </script>
 <style  scoped>
+span {
+  display: inline-block;
+  width: 100%;
+  padding: 0 1rem;
+  height: 3rem;
+  line-height: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  transition: 0.2s;
+}
+span:hover {
+  background: rgba(50, 109, 255, 1);
+  font-weight: bolder;
+}
 </style>

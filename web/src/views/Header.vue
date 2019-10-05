@@ -3,10 +3,11 @@
   <div id="header" ref="change">
     <Nav />
 
-    <div class="container">
-      
+    <div class="container" ref="bg">
       <div class="title">Zhangxc Blog</div>
-      <div class="sub-title"><div id="word-box" ></div></div>
+      <div class="sub-title">
+        <div id="word-box"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,13 +29,17 @@ export default {
   //监控data中的数据变化
   watch: {
     $route(to, from) {
-      console.log(to.path);
+      // console.log(to.path);
       // let ele = document.getElementById("header");
       let ele = this.$refs.change;
-      if (to.path === "/archieve") {
+      let bg = this.$refs.bg;
+      // console.log(to)
+      if (to.name === "article") {
         ele.style.height = "20rem";
+        bg.style.display = "none";
       } else {
-        ele.style.height = "34rem";
+        // ele.style.height = "34rem";
+        bg.style.display = "block";
       }
     }
   },
@@ -44,22 +49,20 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    // let ele = document.getElementById("header");
     let ele = this.$refs.change;
-    console.log(ele);
-    if (this.$route.path === "/archieve") {
-      console.log(this.$route.path);
+    let bg = this.$refs.bg;
+    // console.log(this.$route.name)
+    if (this.$route.name === "article") {
       ele.style.height = "20rem";
+      bg.style.display = "none";
     }
     //打字特效
-    Input.input('我干了什么 究竟拿了时间换了什么','Hello World')
+    Input.input("我干了什么 究竟拿了时间换了什么", "Hello World");
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
-  updated() {
-    
-  }, //生命周期 - 更新之后
+  updated() {}, //生命周期 - 更新之后
   beforeDestroy() {}, //生命周期 - 销毁之前
   destroyed() {}, //生命周期 - 销毁完成
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
@@ -84,11 +87,18 @@ export default {
 
 #header:hover {
   background-size: 120%;
-  /* background-position: center 20%; */
+  /* background-position: center 100%; */
 }
 @media screen and (max-width: 799px) {
   #header {
     height: 20rem;
+    background-size: 120%;
+  }
+}
+@media screen and (max-width: 370px) {
+  #header {
+    height: 20rem;
+    background-size: 140%;
   }
 }
 .container {

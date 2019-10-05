@@ -34,12 +34,12 @@ function input(word, next) {
   }
   //第一步--打字
   function typing1() {
-    console.log("s1 go");
+    // console.log("s1 go");
 
     box.innerText = word.substring(0, index++);
     //
     if (index > word.length) {
-      console.log("s1 stop");
+      // console.log("s1 stop");
       //结束第一步
       clearInterval(s1);
       //光标闪烁
@@ -57,11 +57,11 @@ function input(word, next) {
 
   function typing2() {
     fade();
-    console.log("s2 go");
+    // console.log("s2 go");
     curWord = document.getElementById("word-box").innerText;
     box.innerText = curWord.substring(0, index--);
     if (index === 0) {
-      console.log("s2 stop");
+      // console.log("s2 stop");
       //结束第二步
       clearInterval(s2);
       //开始第三步
@@ -71,12 +71,12 @@ function input(word, next) {
 
   //第三步--打字
   function typing3() {
-    console.log("s3 go");
+    // console.log("s3 go");
 
     box.innerText = next.substring(0, index++);
 
     if (index > next.length) {
-      console.log("s3 stop");
+      // console.log("s3 stop");
       //结束第三步
       clearInterval(s3);
       //开始第四步
@@ -87,11 +87,11 @@ function input(word, next) {
   //第四步--删字
 
   function typing4() {
-    console.log("s4 go");
+    // console.log("s4 go");
     curWord = document.getElementById("word-box").innerText;
     box.innerText = curWord.substring(0, index--);
     if (index === 0) {
-      console.log("s4 stop");
+      // console.log("s4 stop");
       //结束第四步
       clearInterval(s4);
       //无限循环

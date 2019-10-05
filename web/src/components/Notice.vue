@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="notice-body">
+  <div class="notice-body" ref="notice">
       <div>^^</div>
     <div class="title">公告牌</div>
     <div class="start">没事，我就是想say个</div>

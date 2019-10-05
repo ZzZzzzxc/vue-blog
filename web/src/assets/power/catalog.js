@@ -28,7 +28,7 @@ function catalog() {
       item.children = [];
       let len = tree.length;
       if (len === 0) {
-        item.tag = tag + ++index + "."; // 标题索引（1.、1.1.等）
+        item.tag =tag + (++index) + "."; // 标题索引（1.、1.1.等）
         tree.push(item); // 第一个元素，直接放进tree
       } else {
         let last = tree[len - 1];
