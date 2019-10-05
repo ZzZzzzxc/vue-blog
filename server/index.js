@@ -15,9 +15,6 @@ app.use(
   })
 );
 
-app.get("/", function(req, res) {
-  res.sendFile(path.join(__dirname, "web/index.html"));
-});
 //静态资源托管
 app.use("/admin", express.static(__dirname + "/admin"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
