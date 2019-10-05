@@ -18,8 +18,8 @@ window.onmousewheel = document.onmousewheel = scrollFunc.scrollFunc;
 
 import axios from 'axios'
 Vue.prototype.$http = axios.create({
-  // baseURL: process.env.VUE_APP_API_URL || '/web/api'
-  baseURL: 'http://localhost:3000/web/api'
+  baseURL: process.env.VUE_APP_API_URL || '/web/api'
+  // baseURL: 'http://localhost:3000/web/api'
 })
 new Vue({
   router,
