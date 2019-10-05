@@ -18,6 +18,8 @@ require('./plugins/db')(app)
 require('./routes/admin')(app)
 require('./routes/web')(app)
 
+var history = require('connect-history-api-fallback')
+app.use('/',history());
 
 app.listen(3000,()=>{
     console.log('http://localhost:3000')
