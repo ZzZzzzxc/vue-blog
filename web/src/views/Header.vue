@@ -83,6 +83,7 @@ export default {
   background-position: center 60%;
   transition: 0.5s;
   background-size: 100%;
+  user-select:none;
 }
 
 #header:hover {

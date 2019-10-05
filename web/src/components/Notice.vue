@@ -1,10 +1,10 @@
 <!--  -->
 <template>
   <div class="notice-body" ref="notice">
-      <div>^^</div>
+    <div>^^</div>
     <div class="title">公告牌</div>
-    <div class="start">没事，我就是想say个</div>
-    <div class="context">Hi💋</div>
+    <div class="start">没事，我就是想</div>
+    <div class="context">💋</div>
   </div>
 </template>
 
@@ -47,14 +47,19 @@ export default {
   position: fixed;
   text-align: center;
   top: 40rem;
-  right: 1rem;
+
   box-shadow: 0.1rem 0.1rem 1.8rem #888;
   transform: rotate(-10deg);
-  transition: 1s ;
+  transition: 1s;
   opacity: 0.8;
+  user-select: none;
+  /* right: 1rem; */
+  right: -4rem;
 }
 .notice-body:hover {
-    right: -4rem;
+  /* right: -4rem; */
+  transform: rotate(-18deg);
+  right: 1rem;
 }
 .title {
   font-size: 2rem;

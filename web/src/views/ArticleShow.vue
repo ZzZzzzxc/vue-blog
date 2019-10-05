@@ -2,12 +2,19 @@
 <template>
   <div class>
     <div class="container" :class="this.show?'container':'container-unshow'">
+      <div class="markdown-title" style="padding:4rem 0; margin:0 0 4rem 0; box-shadow: 0.2rem 0.2rem 0.8rem #888;text-align:center ">
+        <p style="font-size:4rem;font-weight:bolder">{{model.title}}</p>
+        <p style="font-size:3rem">{{model.subTitle}}</p>
+        <p style="font-size:2rem">{{model.description}}</p>
+        <p style="font-size:2rem">创作时间——{{model.createTime}}</p>
+        <p style="font-size:2rem">最后编辑时间——{{model.lastEditTime}}</p>
+      </div>
       <div class="markdown-body" v-html="model.contentHtml" />
     </div>
     <div class="show-btn" :class="this.show?'show-btn':'show-btn-unshow'" @click="isShow">{{word}}</div>
     <div class="catalog" :class="this.show?'catalog':'unshow'">
       <div class="title">目录</div>
-      <CatalogTree :tree="tree" />
+      <CatalogTree :tree="tree" :rank="rank" />
     </div>
   </div>
 </template>
@@ -39,7 +46,8 @@ export default {
         contentHtml: ""
       },
       tree: [],
-      show: true
+      show: true,
+      rank: 0
     };
   },
   //监听属性 类似于data概念

@@ -2,8 +2,8 @@
 <template>
   <div class>
     <div v-for="(child,key) in item.children" :key="key">
-      <span @click="scroll(key)">{{ child.tag }}{{ child.title }}</span>
-      <CatalogTree :tree="child.children" v-if="child.children" />
+      <span id="item" @click="scroll(key)" ref="item" :style="'padding-left:'+lev+'rem'">{{ child.tag }}{{ child.title }}</span>
+      <CatalogTree :tree="child.children" v-if="child.children" :rank="lev" />
     </div>
   </div>
 </template>
@@ -15,7 +15,8 @@ import CatalogTree from "./CatalogTree";
 export default {
   name: "CatalogTreeItem",
   props: {
-    item: Object
+    item: Object,
+    rank: Number
   },
   //import引入的组件需要注入到对象中才能使用
   components: {
@@ -23,7 +24,9 @@ export default {
   },
   data() {
     //这里存放数据
-    return {};
+    return {
+      lev: Number
+    };
   },
   //监听属性 类似于data概念
   computed: {},
@@ -38,12 +41,19 @@ export default {
         behavior: "smooth"
       });
       // console.log(this.$route);
-    }
+    },
+    level() {
+      this.lev = this.rank;
+      this.lev++;
+    },
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.level();
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -57,7 +67,7 @@ export default {
 span {
   display: inline-block;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0 2rem;
   height: 3rem;
   line-height: 3rem;
   overflow: hidden;
@@ -65,6 +75,7 @@ span {
   white-space: nowrap;
   font-weight: bold;
   transition: 0.2s;
+  user-select:none;
 }
 span:hover {
   background: rgba(50, 109, 255, 1);

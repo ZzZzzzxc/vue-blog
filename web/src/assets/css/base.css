@@ -50,7 +50,7 @@ html {
     }
 }
 
-@media screen and (min-width:800px) and (max-width:1100px){
+@media screen and (min-width:800px) and (max-width:1100px) {
     html {
         font-size: 9px
     }
@@ -130,4 +130,24 @@ ul {
     height: 0.1rem;
     left: 0;
     background: #cccccc
+}
+
+
+*::-webkit-scrollbar {
+    width: 1rem;
+    height: 0.6rem;
+    background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4rem;
+}
+
+*:hover::-webkit-scrollbar-thumb {
+    background: hsla(0, 0%, 53%, 0.4);
+}
+
+*:hover::-webkit-scrollbar-track {
+    background: hsla(0, 0%, 53%, 0.1);
 }

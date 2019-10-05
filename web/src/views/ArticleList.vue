@@ -71,6 +71,7 @@ export default {
   margin: 0 4%;
   padding: 0.1rem 0.1rem;
   box-shadow: 0.5rem 0.5rem 1.8rem #888;
+  user-select:none;
   /* height: 100%; */
   /* background: gold; */
 }

@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class>
-    <button @click="backToTop">top</button>
+    <div @click="backToTop">top🎈</div>
   </div>
 </template>
 
@@ -23,23 +23,10 @@ export default {
   //方法集合
   methods: {
     backToTop() {
-      let clientHeight = document.documentElement.clientHeight; //获取可视区域的高度
-      let timer = null; //定义一个定时器
-      let isTop = true; //定义一个布尔值，用于判断是否到达顶部
-      //设置一个定时器
-      timer = setInterval(function() {
-        //获取滚动条的滚动高度
-        let osTop =
-          document.documentElement.scrollTop || document.body.scrollTop;
-        //用于设置速度差，产生缓动的效果
-        let speed = Math.floor(-osTop / 6);
-        document.documentElement.scrollTop = document.body.scrollTop =
-          osTop + speed;
-        isTop = true; //用于阻止滚动事件清除定时器
-        if (osTop == 0) {
-          clearInterval(timer);
-        }
-      }, 30);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -56,11 +43,18 @@ export default {
 };
 </script>
 <style  scoped>
-button {
-  width: 100px;
-  height: 500px;
-  background: red;
+div {
+  width: 6rem;
+  height: 4rem;
+  /* background: red; */
   position: fixed;
-  top: 20px;
+  top: 70rem;
+  right: 0;
+  text-align: center;
+  line-height: 4rem;
+  font-size: 2rem;
+  font-weight: bolder;
+  box-shadow: 0.1rem 0.1rem 1.8rem #888;
+  user-select: none;
 }
 </style>

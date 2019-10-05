@@ -55,6 +55,7 @@ export default {
 <style  scoped>
 .body {
   /* height: 1000px; */
+  user-select:none;
 }
 .row {
   width: 84%;

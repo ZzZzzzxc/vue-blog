@@ -50,6 +50,7 @@ export default {
   margin: 0.8rem 0.8rem;
   font-size: 1.2rem;
   font-weight: bold;
+  user-select:none;
 }
 .tag-body:hover {
   box-shadow: 0.2rem 0.2rem 0.8rem #888;

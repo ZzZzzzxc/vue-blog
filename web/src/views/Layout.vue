@@ -6,7 +6,7 @@
       <router-view :key="$route.path"></router-view>
     </transition>
     <Footer />
-    <!-- <BackToTop/> -->
+    <BackToTop/>
     <Notice/>
   </div>
 </template>
@@ -17,14 +17,14 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import Notice from '../components/Notice'
-// import BackToTop from '../components/BackToTop'
+import BackToTop from '../components/BackToTop'
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
     Header,
     Footer,
-    Notice
-    // BackToTop
+    Notice,
+    BackToTop
   },
   data() {
     //这里存放数据
