@@ -7,13 +7,13 @@ app.use(express.json());
 //CORS跨域的中间件
 app.use(require("cors")());
 //这句代码需要在express.static上面
-var history = require("connect-history-api-fallback");
-app.use(
-  history({
-    verbose: true,
-    index: "/"
-  })
-);
+// var history = require("connect-history-api-fallback");
+// app.use(
+//   history({
+//     verbose: true,
+//     index: "/"
+//   })
+// );
 
 //静态资源托管
 app.use("/admin", express.static(__dirname + "/admin"));
