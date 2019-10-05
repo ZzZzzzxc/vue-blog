@@ -6,6 +6,9 @@ const app = express()
 app.use(express.json())
 //CORS跨域的中间件
 app.use(require('cors')())
+//这句代码需要在express.static上面
+var history = require('connect-history-api-fallback')
+app.use('/',history());
 //静态资源托管
 app.use('/admin', express.static(__dirname + '/admin'))
 app.use('/uploads', express.static(__dirname + '/uploads'))
@@ -18,11 +21,8 @@ require('./plugins/db')(app)
 require('./routes/admin')(app)
 require('./routes/web')(app)
 
-var history = require('connect-history-api-fallback')
-app.use('/',history()).listen(3000,()=>{
-    console.log('http://localhost:3000')
-});
 
-// app.listen(3000,()=>{
-//     console.log('http://localhost:3000')
-// })
+
+app.listen(3000,()=>{
+    console.log('http://localhost:3000')
+})
