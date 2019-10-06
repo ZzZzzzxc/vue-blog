@@ -3,7 +3,8 @@
   <div class="card-body" @click="$router.push(`/articles/${articles[index]._id}`)">
     <h2>{{articles[index].title}}</h2>
     <h3>{{articles[index].subTitle}}</h3>
-    <div class="description of">{{articles[index].context}}</div>
+    <div class="description">{{articles[index].description}}</div>
+    <div class="context of">{{articles[index].context}}</div>
     <p class="time">发布时间{{articles[index].createTime}}</p>
     <p class="time"> 最后编辑时间{{articles[index].lastEditTime}}</p>
   </div>
@@ -53,12 +54,14 @@ export default {
   border-bottom: 0.1rem solid #a3a3a3;
   transition: 0.2s;
   user-select:none;
+  line-height: 1.5;
 }
 .card-body:hover{
   box-shadow: 0.1rem 0.1rem 1.8rem #888;
 }
 .card-body > * {
   margin: 0.5rem 0;
+  
 }
 h2 {
   font-size: 2.8rem;
@@ -66,12 +69,16 @@ h2 {
 h3 {
   font-size: 1.6rem;
 }
-.description {
+.description{
+  font-size: 1.6rem;
+  color: rgb(228, 30, 178,0.8);
+}
+.context {
   font-size: 1.4rem;
   color: #a3a3a3;
 }
 .time {
   font-size: 1.2rem;
-  color: #ccc;
+  color: #a3a3a3;
 }
 </style>

@@ -34,12 +34,14 @@ export default {
       let ele = this.$refs.change;
       let bg = this.$refs.bg;
       // console.log(to)
-      if (to.name === "article") {
-        ele.style.height = "20rem";
-        bg.style.display = "none";
-      } else {
-        // ele.style.height = "34rem";
-        bg.style.display = "block";
+      if (document.documentElement.offsetWidth > 1080) {
+        if (to.name === "article") {
+          ele.style.height = "20rem";
+          bg.style.display = "none";
+        } else {
+          ele.style.height = "34rem";
+          bg.style.display = "block";
+        }
       }
     }
   },
@@ -49,13 +51,6 @@ export default {
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    let ele = this.$refs.change;
-    let bg = this.$refs.bg;
-    // console.log(this.$route.name)
-    if (this.$route.name === "article") {
-      ele.style.height = "20rem";
-      bg.style.display = "none";
-    }
     //打字特效
     Input.input("我干了什么 究竟拿了时间换了什么", "Hello World");
   },
@@ -83,7 +78,7 @@ export default {
   background-position: center 60%;
   transition: 0.5s;
   background-size: 100%;
-  user-select:none;
+  user-select: none;
 }
 
 #header:hover {

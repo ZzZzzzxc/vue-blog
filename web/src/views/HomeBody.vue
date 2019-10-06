@@ -55,7 +55,7 @@ export default {
 <style  scoped>
 .body {
   /* height: 1000px; */
-  user-select:none;
+  user-select: none;
 }
 .row {
   width: 84%;
@@ -76,6 +76,15 @@ export default {
   /* height: 1000px; */
 }
 @media screen and (max-width: 768px) {
+  .container {
+    width: 98%;
+    margin: 0 1%;
+  }
+  .row {
+    width: 98%;
+    margin: 0 1%;
+    height: 100%;
+  }
   .row-1 {
     display: none;
   }

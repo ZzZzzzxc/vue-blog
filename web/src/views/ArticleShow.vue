@@ -2,7 +2,10 @@
 <template>
   <div class>
     <div class="container" :class="this.show?'container':'container-unshow'">
-      <div class="markdown-title" style="padding:4rem 0; margin:0 0 4rem 0; box-shadow: 0.2rem 0.2rem 0.8rem #888;text-align:center ">
+      <div
+        class="markdown-title"
+        style="padding:4rem 0; margin:0 0 4rem 0; box-shadow: 0.2rem 0.2rem 0.8rem #888;text-align:center "
+      >
         <p style="font-size:4rem;font-weight:bolder">{{model.title}}</p>
         <p style="font-size:3rem">{{model.subTitle}}</p>
         <p style="font-size:2rem">{{model.description}}</p>

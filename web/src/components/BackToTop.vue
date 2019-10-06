@@ -44,7 +44,7 @@ export default {
 </script>
 <style  scoped>
 div {
-  width: 6rem;
+  width: 10rem;
   height: 4rem;
   /* background: red; */
   position: fixed;
@@ -56,5 +56,6 @@ div {
   font-weight: bolder;
   box-shadow: 0.1rem 0.1rem 1.8rem #888;
   user-select: none;
+  padding: 0 1rem;
 }
 </style>

@@ -9,7 +9,7 @@
         <router-link to="/archieve" tag="li">归档📃</router-link>
         <router-link to="/todo" tag="li">TODO</router-link>
       </ul>
-      <div class="btn"  @click.stop="didClickMenus">📃</div>
+      <div class="btn"  @click.stop="didClickMenus">Click Me</div>
     </div>
   </nav>
 </template>
@@ -89,7 +89,6 @@ nav {
   position: fixed;
   top: 0;
   transition: 0.9s;
-  
 }
 
 .logo {
@@ -111,7 +110,10 @@ nav {
     width: 100%;
     text-align: center;
     margin: 0 0;
-    
+    font-size: 2rem;
+  }
+  .logo{
+    font-size:2.4rem;
   }
 }
 @media screen and (min-width: 1100px) {
@@ -133,5 +135,6 @@ li:hover {
 }
 .btn {
   float: right;
+  font-size: 2.4rem;
 }
 </style>

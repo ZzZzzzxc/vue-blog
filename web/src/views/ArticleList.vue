@@ -72,7 +72,11 @@ export default {
   padding: 0.1rem 0.1rem;
   box-shadow: 0.5rem 0.5rem 1.8rem #888;
   user-select:none;
-  /* height: 100%; */
-  /* background: gold; */
+}
+@media screen and (max-width: 768px) {
+  .body {
+    width: 96%;
+  margin: 0 2%;
+  }
 }
 </style>

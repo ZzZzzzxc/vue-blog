@@ -132,22 +132,17 @@ ul {
     background: #cccccc
 }
 
-
-*::-webkit-scrollbar {
+/* 滚动条 */
+/* 整体 */
+::-webkit-scrollbar {
     width: 1rem;
     height: 0.6rem;
     background: transparent;
+    background: hsla(0, 0%, 53%, 0.2);
 }
-
-*::-webkit-scrollbar-thumb {
-    background: transparent;
+/* 滑块 */
+::-webkit-scrollbar-thumb {
+    background: hsla(0, 0%, 53%, 0.6);
     border-radius: 4rem;
 }
 
-*:hover::-webkit-scrollbar-thumb {
-    background: hsla(0, 0%, 53%, 0.4);
-}
-
-*:hover::-webkit-scrollbar-track {
-    background: hsla(0, 0%, 53%, 0.1);
-}

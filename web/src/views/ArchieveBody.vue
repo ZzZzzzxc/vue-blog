@@ -58,12 +58,12 @@ export default {
 }
 @media screen and (max-width: 768px) {
   .container {
-    width: 90%;
-    margin: 0 5%;
+    width: 98%;
+    margin: 0 1%;
   }
   .row {
-    width: 90%;
-    margin: 0 5%;
+    width: 92%;
+    margin: 0 4%;
     height: 100%;
     /* background: red; */
   }
