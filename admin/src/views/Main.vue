@@ -17,6 +17,11 @@
             <el-menu-item index="/articles/list">文章列表</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group>
+            <template slot="title">音乐</template>
+            <el-menu-item index="/musics/create">添加歌曲</el-menu-item>
+            <el-menu-item index="/musics/list">歌曲列表</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group>
             <template slot="title">About Me</template>
             <el-menu-item index="/about/edit">About Me</el-menu-item>
           </el-menu-item-group>

@@ -13,6 +13,9 @@ import TagList from "./views/TagList.vue";
 import ArticleEdit from './views/ArticleEdit.vue'
 import ArticleList from './views/ArticleList.vue'
 
+import MusicEdit from "./views/MusicEdit.vue";
+import MusicList from "./views/MusicList.vue";
+
 import AdminUserEdit from './views/AdminUserEdit.vue'
 import AdminUserList from './views/AdminUserList.vue'
 
@@ -36,6 +39,10 @@ const router =  new Router({
         { path: "/tags/create", component: TagEdit },
         { path: "/tags/edit/:id", component: TagEdit, props: true },
         { path: "/tags/list", component: TagList },
+        
+        { path: "/musics/create", component: MusicEdit },
+        { path: "/musics/edit/:id", component: MusicEdit, props: true },
+        { path: "/musics/list", component: MusicList },
 
         { path: '/articles/create', component: ArticleEdit },
         { path: '/articles/edit/:id', component: ArticleEdit, props: true },

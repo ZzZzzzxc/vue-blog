@@ -1,4 +1,5 @@
 function catalog() {
+  // let height = 
   //外层容器
   let markdownBody = document.getElementsByClassName("markdown-body");
   //内容区
@@ -12,6 +13,7 @@ function catalog() {
     if (list.indexOf(childrenList[i].tagName) >= 0) {
       objList.push({
         scrollTop: childrenList[i].offsetTop,
+        id: childrenList[i].id,
         index: parseInt(childrenList[i].tagName.replace("H", "")),
         title: childrenList[i].innerText
       });

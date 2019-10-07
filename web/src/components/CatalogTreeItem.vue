@@ -40,6 +40,7 @@ export default {
         top: this.item.children[index].scrollTop,
         behavior: "smooth"
       });
+      console.log(this.item.children[index].scrollTop)
       // console.log(this.$route);
     },
     level() {

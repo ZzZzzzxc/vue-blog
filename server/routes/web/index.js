@@ -4,8 +4,13 @@ module.exports = app => {
 
   const Article = mongoose.model("Article");
   const Tag = mongoose.model("Tag");
+  const Music = mongoose.model("Music");
 
-
+  //歌单
+  router.get("/musics/list", async (req, res) => {
+    const data = await Music.find();
+    res.send(data);
+  });
   //标签列表
   router.get("/tags/list", async (req, res) => {
     const data = await Tag.find();
@@ -23,7 +28,7 @@ module.exports = app => {
       .lean();
     res.send(data);
   });
-//根据标签筛选文章
+  //根据标签筛选文章
   router.get("/tags/:id", async (req, res) => {
     // console.log(req.params.id)
     const result = await Tag.aggregate([
@@ -39,7 +44,7 @@ module.exports = app => {
           foreignField: "tags",
           as: "articlesList"
         }
-      },
+      }
     ]);
     res.send(result);
   });

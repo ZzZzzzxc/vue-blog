@@ -2,7 +2,11 @@
 <template>
   <div>
     <div v-for="(child , key) in tree" :key="key">
-      <span @click="scroll(key)" :id="'title-'+key" :style="'padding-left:'+lev+'rem'">{{ child.tag }}{{ child.title }}</span>
+      <span
+        @click="scroll(key)"
+        :id="'title-'+key"
+        :style="'padding-left:'+lev+'rem'"
+      >{{ child.tag }}{{ child.title }}</span>
       <CatalogTreeItem :item="child " v-if="child.children" :rank="lev" />
     </div>
   </div>
@@ -40,6 +44,7 @@ export default {
         top: this.tree[index].scrollTop,
         behavior: "smooth"
       });
+      console.log(this.tree[index].scrollTop)
       // console.log(document.getElementById('title-'+index).offsetTop   )
       // console.log(this.tree[index].scrollTop)
       // console.log(this.tree[index+1].scrollTop)
@@ -48,7 +53,6 @@ export default {
     },
     level() {
       this.lev = this.rank;
-
       this.lev++;
     }
   },
@@ -83,7 +87,7 @@ span {
   white-space: nowrap;
   font-weight: bold;
   transition: 0.2s;
-  user-select:none;
+  user-select: none;
 }
 span:hover {
   background: rgba(50, 109, 255, 1);

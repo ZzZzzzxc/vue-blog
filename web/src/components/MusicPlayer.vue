@@ -29,7 +29,7 @@ export default {
   data() {
     //这里存放数据
     return {
-      isShow: "true",
+      isShow: false,
       music: [],
       singer: "",
       song: "",
@@ -39,34 +39,9 @@ export default {
       paused: false,
       musicList: [
         {
-          singer: "五月天",
-          song: "后来的我们",
-          id: "553310243"
-        },
-        {
-          singer: "Asher Monroe",
-          song: "Try ",
-          id: "5041667"
-        },
-        {
-          singer: "林俊杰",
-          song: "那些你很冒险的梦 ",
-          id: "108138"
-        },
-        {
-          singer: "吴欣睿",
-          song: "三个人的时光 ",
-          id: "165614"
-        },
-        {
-          singer: "麦振鸿",
-          song: "雪见—仙凡之旅 ",
-          id: "86381"
-        },
-        {
-          singer: "王力宏",
-          song: "你不知道的事 ",
-          id: "25642125"
+          singer: "",
+          song: "",
+          id: ""
         }
       ],
       cur: ""
@@ -118,6 +93,11 @@ export default {
         // this.isPaused()
       });
     },
+
+    async fetchList() {
+      const res = await this.$http.get("musics/list");
+      this.musicList = res.data;
+    },
     isPaused() {
       let audio = document.getElementById("media");
       if (audio.paused) {
@@ -146,7 +126,8 @@ export default {
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
-    this.getMusic("553310243");
+    this.fetchList();
+    this.getMusic(this.musicList[0].id);
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -175,11 +156,9 @@ export default {
 }
 .show {
   right: 0;
-  
 }
 .unshow {
   right: -90%;
- 
 }
 ul {
   position: fixed;

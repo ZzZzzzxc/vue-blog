@@ -1,12 +1,12 @@
 <!--  -->
 <template>
-  <div class>
+  <div class="body">
     <div class="container" :class="this.show?'container':'container-unshow'">
       <div
         class="markdown-title"
         style="padding:4rem 0; margin:0 0 4rem 0; box-shadow: 0.2rem 0.2rem 0.8rem #888;text-align:center "
       >
-        <p style="font-size:4rem;font-weight:bolder">{{model.title}}</p>
+        <p class="title" style="font-size:4rem;font-weight:bolder">{{model.title}}</p>
         <p style="font-size:3rem">{{model.subTitle}}</p>
         <p style="font-size:2rem">{{model.description}}</p>
         <p style="font-size:2rem">创作时间——{{model.createTime}}</p>
@@ -106,6 +106,8 @@ export default {
   margin: 0 0 0 25%;
   padding: 6rem 0;
   transition: 0.2s;
+  /* 至关重要 */
+  position: relative;
 }
 .container-unshow {
   width: 70%;
@@ -126,6 +128,7 @@ export default {
   /* left: -20%; */
   left: 0;
   transition: 0.2s;
+  z-index: 10;
 }
 .unshow {
   left: -20%;
