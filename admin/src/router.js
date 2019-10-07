@@ -20,8 +20,8 @@ import AboutMeEdit from './views/AboutMeEdit.vue'
 Vue.use(Router);
 
 const router =  new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'history',
+  // base: process.env.BASE_URL,
   routes: [
     { path: '/login', name: 'login', component: Login,meta: { isPublic: true } },
     {

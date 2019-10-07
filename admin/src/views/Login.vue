@@ -21,8 +21,8 @@ export default {
   data(){
     return {
       model: {
-        username:'root',
-        password:'123456'
+        username:'',
+        password:''
       }
     }
   },
