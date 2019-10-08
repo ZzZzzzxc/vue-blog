@@ -5,6 +5,10 @@ import router from "./router";
 //自定义css
 import "./assets/css/base.css";
 
+//Toast
+import Toast from './components/Toast/toast'
+Vue.use(Toast)
+
 //markdown插件
 import mavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";

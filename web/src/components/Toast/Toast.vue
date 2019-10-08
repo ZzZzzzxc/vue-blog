@@ -1,8 +1,8 @@
 <!--  -->
 <template>
-  <div class>
-    <div @click="backToTop" title="回到顶部">🎈</div>
-  </div>
+  <transition name="box">
+    <div id="toast" v-if="alive">{{msg}}</div>
+  </transition>
 </template>
 
 <script>
@@ -11,10 +11,17 @@
 
 export default {
   //import引入的组件需要注入到对象中才能使用
+  name: "toast",
   components: {},
+  props:{
+    msg:String
+  },
   data() {
     //这里存放数据
-    return {};
+    return {
+      alive: false,
+      timer: null
+    };
   },
   //监听属性 类似于data概念
   computed: {},
@@ -22,17 +29,24 @@ export default {
   watch: {},
   //方法集合
   methods: {
-    backToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
+    destroyToast() {
+      this.alive = true;
+      if (this.timer) {
+        clearTimeOut(this.timer);
+      } else {
+        this.timer = setTimeout(() => {
+          document.getElementById("toast").style.opacity = 0;
+          this.alive = false;
+        }, 2000);
+      }
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    this.destroyToast();
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -43,38 +57,33 @@ export default {
 };
 </script>
 <style  scoped>
-div {
-  border-radius: 50%;
-  width: 6rem;
-  height: 6rem;
-  /* background: red; */
+#toast {
   position: fixed;
-  top: 65rem;
-  right: 2rem;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: wheat;
   text-align: center;
+  height: 6rem;
   line-height: 6rem;
-  font-size: 2.4rem;
-  font-weight: bolder;
+  width: 16rem;
   user-select: none;
-  padding: 0 1rem;
-  background: rgb(22, 149, 187,0.1);
   transition: 1s;
+  opacity: 1;
+  font-size: 2rem;
+  font-weight: bolder;
+  border-radius: 4rem
 }
-div:hover{
-  width: 6.6rem;
-  height: 6.6rem;
-  font-size: 2.8rem;
-  line-height: 6.6rem;
-  right: 1.4rem;
-  top: 64.4rem;
-  background: rgb(200, 227, 235);
-  box-shadow: 0.1rem 0.1rem 1.8rem #888;
-  /* transform: rotate(20deg) */
+.box-enter,
+.box-leave-to {
+  opacity: 0;
 }
-
-@media screen  and (max-width:900px){
-  div{
-    display: none;
-  }
+.box-enter-to,
+.box-leave {
+  opacity: 1;
+}
+.box-enter-active,
+.box-leave-active {
+  transition: all 1s;
 }
 </style>

@@ -15,6 +15,11 @@
         :class="{'active':cur ===k}"
       >{{musicList[k].song}}💕{{musicList[k].singer}}</li>
     </ul>
+    <div class="volume">
+      <div @click="addVolume" class="add">➕</div>
+      {{volume}}%
+      <div @click="minusVolume" class="minus">➖</div>
+    </div>
     <div class="btn" @click="isShow?isShow=!isShow:isShow=!isShow">{{word}}</div>
   </div>
 </template>
@@ -44,7 +49,8 @@ export default {
           id: ""
         }
       ],
-      cur: ""
+      cur: "",
+      volume: "100"
     };
   },
   //监听属性 类似于data概念
@@ -97,6 +103,9 @@ export default {
     async fetchList() {
       const res = await this.$http.get("musics/list");
       this.musicList = res.data;
+      this.$nextTick(function() {
+        this.getMusic(this.musicList[0].id);
+      });
     },
     isPaused() {
       let audio = document.getElementById("media");
@@ -122,12 +131,31 @@ export default {
       if (this.deg === 360) {
         this.deg = 0;
       }
+    },
+    addVolume() {
+      // this.$TOAST("点击了增加按钮");
+      console.log(document.getElementById("media").volume);
+      if (document.getElementById("media").volume < 1) {
+        this.volume += 10;
+        document.getElementById("media").volume = this.volume / 100;
+      } else {
+        this.$TOAST("最大声了");
+      }
+    },
+    minusVolume() {
+      // this.$TOAST("点击了减少按钮");
+      console.log(document.getElementById("media").volume);
+      if (document.getElementById("media").volume > 0) {
+        this.volume -= 10;
+        document.getElementById("media").volume = this.volume / 100;
+      } else {
+        this.$TOAST("没声了");
+      }
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {
     this.fetchList();
-    this.getMusic(this.musicList[0].id);
   },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
@@ -153,6 +181,7 @@ export default {
   font-size: 2rem;
   border-radius: 50%;
   user-select: none;
+  box-shadow: 0.2rem 0.2rem 0.8rem #888;
 }
 .show {
   right: 0;
@@ -162,7 +191,7 @@ export default {
 }
 ul {
   position: fixed;
-  top: 15rem;
+  top: 20rem;
   right: 0;
   background: wheat;
   user-select: none;
@@ -178,7 +207,7 @@ li {
 }
 .btn {
   position: fixed;
-  top: 12rem;
+  top: 17rem;
   right: 0;
   background: wheat;
   text-align: center;
@@ -186,7 +215,9 @@ li {
   line-height: 1.5;
   padding: 0.7rem 0.8rem;
   user-select: none;
+  box-shadow: 0.2rem 0.2rem 0.8rem #888;
 }
+
 @media screen and (max-width: 1000px) {
   .body {
     display: none;
@@ -209,5 +240,50 @@ li {
 }
 .active {
   opacity: 1;
+}
+.volume {
+  position: fixed;
+  top: 12rem;
+  right: 0;
+  background: wheat;
+  user-select: none;
+  box-shadow: 0.2rem 0.2rem 0.8rem #888;
+  line-height: 4rem;
+  height: 4rem;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  border-radius: 2rem;
+  /* transform: rotate(90deg) */
+  opacity: 0.4;
+  transition: 1s;
+}
+
+.volume:hover {
+  opacity: 1;
+}
+
+.add {
+  font-size: 1.2rem;
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  background: wheat;
+  margin: 0 1rem;
+}
+.minus {
+  font-size: 1.2rem;
+  font-weight: bolder;
+  text-align: center;
+  display: inline-block;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  background: wheat;
+  margin: 0 1rem;
 }
 </style>

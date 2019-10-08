@@ -13,20 +13,21 @@ import mavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
 Vue.use(mavonEditor);
 
+
 Vue.mixin({
-  computed: {
-    uploadUrl() {
-      return this.$http.defaults.baseURL + "/upload";
+  computed:{
+    uploadUrl(){
+      return this.$http.defaults.baseURL+'/upload'
     }
   },
-  methods: {
-    getAuthHeaders() {
-      return {
-        Authorization: `Bearer ${localStorage.token || ""}`
-      };
+  methods:{
+    getAuthHeaders(){
+      return{
+        Authorization:`Bearer ${localStorage.token||''}`
+      }
     }
   }
-});
+})
 new Vue({
   router,
   render: h => h(App)

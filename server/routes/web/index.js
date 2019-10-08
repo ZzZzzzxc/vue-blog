@@ -5,12 +5,18 @@ module.exports = app => {
   const Article = mongoose.model("Article");
   const Tag = mongoose.model("Tag");
   const Music = mongoose.model("Music");
+  const About = mongoose.model("About");
 
   //歌单
   router.get("/musics/list", async (req, res) => {
     const data = await Music.find();
     res.send(data);
   });
+    //个人卡片
+    router.get("/abouts/list", async (req, res) => {
+      const data = await About.find();
+      res.send(data);
+    });
   //标签列表
   router.get("/tags/list", async (req, res) => {
     const data = await Tag.find();

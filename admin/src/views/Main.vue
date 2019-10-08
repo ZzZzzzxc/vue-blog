@@ -23,7 +23,8 @@
           </el-menu-item-group>
           <el-menu-item-group>
             <template slot="title">About Me</template>
-            <el-menu-item index="/about/edit">About Me</el-menu-item>
+            <el-menu-item index="/abouts/edit">Create</el-menu-item>
+            <el-menu-item index="/abouts/list">Edit</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 

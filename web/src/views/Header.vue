@@ -79,6 +79,8 @@ export default {
   transition: 0.5s;
   background-size: 100%;
   user-select: none;
+  transition: background 3s;
+  transition-duration:ease-in-out
 }
 
 #header:hover {

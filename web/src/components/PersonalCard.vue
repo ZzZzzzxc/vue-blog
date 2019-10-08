@@ -1,12 +1,12 @@
 <!--  -->
 <template>
   <div class="card-body">
-    <div class="title">我</div>
+    <div class="title">{{model[0].name}}</div>
     <div class="avatar">
-      <img src="../assets/avatar.jpg" alt />
+      <img :src="model[0].avatar" alt />
     </div>
-    <div class="word">For the next quantum leap</div>
-    <div class="word">离开世界之前，一切都是过程</div>
+    <div class="word">{{model[0].description}}</div>
+    <div class="word">{{model[0].context}}</div>
     <div class="social"></div>
     <div class="footer line"></div>
   </div>
@@ -21,16 +21,32 @@ export default {
   components: {},
   data() {
     //这里存放数据
-    return {};
+    return {
+      model: [
+        {
+          avatar: "",
+          name: "",
+          description: "",
+          context: ""
+        }
+      ]
+    };
   },
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
   watch: {},
   //方法集合
-  methods: {},
+  methods: {
+    async fetchCard() {
+      const res = await this.$http.get("abouts/list");
+      this.model = res.data;
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.fetchCard();
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
@@ -50,9 +66,9 @@ export default {
   padding: 3%;
   box-shadow: 0.5rem 0.5rem 1.8rem #888;
   transform: rotate(-5deg);
-  user-select:none;
+  user-select: none;
 }
-.card-body>*{
+.card-body > * {
   text-align: center;
 }
 .title {
@@ -69,9 +85,9 @@ img {
   /* border-radius: 50%; */
   border-radius: 1rem;
   transition: 0.5s;
-  transform:rotate(-10deg);
+  transform: rotate(-10deg);
 }
-.avatar:hover{
+.avatar:hover {
   width: 80%;
   margin: 2rem auto;
 }
@@ -79,7 +95,7 @@ img:hover {
   box-shadow: 0.7rem 0.8rem 1rem #dc5bf0, -1rem -1rem 2rem #c9c91e;
   /* border-radius: 1rem; */
   border-radius: 50%;
-  transform:rotate(360deg);
+  transform: rotate(360deg);
 }
 .word {
   color: #ccc;
