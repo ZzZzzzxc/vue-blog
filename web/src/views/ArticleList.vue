@@ -48,6 +48,11 @@ export default {
         this.articles = res.data;
         this.articles.reverse()
       }
+      this.$nextTick(function(){
+        if(!this.articles[0]){
+          this.$TOAST('还没有东西哦👨‍✈️')
+        }
+      })
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）

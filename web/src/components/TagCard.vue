@@ -2,7 +2,7 @@
   <div
     class="tag-body"
     @click="$router.push(`/tags/${tagList[index]._id}`)"
-  >{{tagList[index].name}} 🤙 {{tagList[index].num}}</div>
+  >{{tagList[index].name}} 🔥 {{tagList[index].num}}</div>
 </template>
 
 <script>

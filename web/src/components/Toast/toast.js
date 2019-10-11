@@ -5,10 +5,10 @@ export default {
   install(vue) {
     vue.prototype.$TOAST = this.getComponent;
   },
-  getComponent(param) {
+  getComponent(msg) {
     //生成组件
     let instance = new Builder({
-      propsData: { msg: param }
+      propsData: { msg: msg}
     });
     //组件需要挂载在dom元素上
     instance.vm = instance.$mount();

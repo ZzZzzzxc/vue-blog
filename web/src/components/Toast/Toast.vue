@@ -59,7 +59,7 @@ export default {
 <style  scoped>
 #toast {
   position: fixed;
-  top: 10%;
+  top: 6%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: wheat;

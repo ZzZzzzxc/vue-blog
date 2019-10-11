@@ -30,6 +30,7 @@
           v-model="model.context"
           :toolbars="toolbars"
           @change="changeData"
+          @save='download'
         />
       </el-form-item>
       <el-form-item>
@@ -53,10 +54,13 @@ export default {
         italic: true, // 斜体
         header: true, // 标题
         underline: true, // 下划线
+        strikethrough: true, // 中划线
         mark: true, // 标记
         superscript: true, // 上角标
+        subscript: true, // 下角标
         quote: true, // 引用
         ol: true, // 有序列表
+        ul: true, // 无序列表
         link: true, // 链接
         imagelink: true, // 图片链接
         help: true, // 帮助
@@ -64,12 +68,15 @@ export default {
         subfield: true, // 是否需要分栏
         fullscreen: true, // 全屏编辑
         readmodel: true, // 沉浸式阅读
+        save:true,// 保存（触发events中的save事件）
+        htmlcode: true, // 展示html源码
         /* 1.3.5 */
         undo: true, // 上一步
         trash: true, // 清空
         save: true, // 保存（触发events中的save事件）
         /* 1.4.2 */
-        navigation: true // 导航目录
+        navigation: true, // 导航目录
+        
       },
       model: {
         tags: [],
@@ -114,6 +121,21 @@ export default {
       formdata.append("file", $file);
       const res = await this.$http.post("upload", formdata);
       this.$refs.md.$img2Url(pos, res.data.url);
+    },
+    //编辑器保存文件到本地
+    //value为md格式
+    //render为html格式
+    download(value, render){
+      let text  = value;
+      let MIME_TYPE = 'text/plain'
+      window.URL = window.webkitURL||window.URL
+      let bb = new Blob([text],{type:MIME_TYPE})
+      let a = document.createElement('a')
+      a.download = this.model.title+'.md';
+      a.href = window.URL.createObjectURL(bb)
+      a.textContent = 'Download_ready'
+      a.dataset.download = [MIME_TYPE,a.download,a.href].join(':')
+      a.click()
     },
     async save() {
       let res;

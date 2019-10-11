@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="notice-body" ref="notice">
+  <div class="notice-body" ref="notice" @click="$TOAST('不要点我')">
     <div>^^</div>
     <div class="title">公告牌</div>
     <div class="start">没事，我就是想</div>

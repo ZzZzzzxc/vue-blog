@@ -11,6 +11,7 @@
         <p style="font-size:2rem">{{model.description}}</p>
         <p style="font-size:2rem">创作时间——{{model.createTime}}</p>
         <p style="font-size:2rem">最后编辑时间——{{model.lastEditTime}}</p>
+        <div><TagCard v-for="(value,key) in model.tags" :key="key" :tagList="model.tags" :index="key" /></div>
       </div>
       <div class="markdown-body" v-html="model.contentHtml" />
     </div>
@@ -28,10 +29,12 @@
 import catalog from "../assets/power/catalog";
 import CatalogTree from "../components/CatalogTree";
 import "../assets/css/markdown.css";
+import TagCard from '../components/TagCard'
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
-    CatalogTree
+    CatalogTree,
+    TagCard
   },
   props: {
     id: {}
@@ -46,7 +49,8 @@ export default {
         lastEditTime: "",
         subTitle: "",
         title: "",
-        contentHtml: ""
+        contentHtml: "",
+        tags:''
       },
       tree: [],
       show: true,
