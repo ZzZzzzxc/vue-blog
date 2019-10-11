@@ -27,6 +27,7 @@ export default {
         top: 0,
         behavior: "smooth"
       });
+     
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -57,10 +58,10 @@ div {
   font-weight: bolder;
   user-select: none;
   padding: 0 1rem;
-  background: rgb(22, 149, 187,0.1);
+  background: rgb(22, 149, 187, 0.1);
   transition: 1s;
 }
-div:hover{
+div:hover {
   width: 6.6rem;
   height: 6.6rem;
   font-size: 2.8rem;
@@ -72,8 +73,8 @@ div:hover{
   /* transform: rotate(20deg) */
 }
 
-@media screen  and (max-width:900px){
-  div{
+@media screen and (max-width: 900px) {
+  div {
     display: none;
   }
 }

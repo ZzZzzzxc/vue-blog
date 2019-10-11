@@ -28,11 +28,18 @@ function scrollFunc(e) {
       //当滑轮向上滚动时
       nav[0].style.backgroundColor = "white";
       nav[0].style.color = "black";
+      nav[0].style.display = "block";
+      setTimeout(function() {
+        nav[0].style.opacity = "1";
+      }, 0);
     }
     if (e.detail < 0) {
       //当滑轮向下滚动时
-      nav[0].style.backgroundColor = "black";
-      nav[0].style.color = "white";
+      setTimeout(function() {
+        nav[0].style.display = "none";
+      }, 0);
+
+      nav[0].style.opacity = "0";
     }
   }
   //到顶部时恢复导航栏

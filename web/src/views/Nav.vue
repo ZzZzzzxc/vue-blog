@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <nav>
+  <nav ref="nav">
     <div class="container">
       <router-link tag='div' to="/" class="logo">BLOG</router-link>
       <ul v-show="isShow">
