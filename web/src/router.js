@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Layout from './views/Layout.vue';
+import Layout from './views/Layout.vue';
 // import HomeBody from './views/HomeBody.vue';
 // import AboutBody from './views/AboutBody.vue'
 // import ArchieveBody from './views/ArchieveBody.vue'
@@ -20,8 +20,7 @@ const router = new Router({
     {
       path: '/',
       name: 'layout',
-      // component: Layout,
-      component: () => import(/* webpackChunkName: "layout" */ './views/Layout.vue'),
+      component: Layout,
       children:[
         {
           path:'/',

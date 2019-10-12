@@ -1,162 +1,158 @@
 <template>
   <div class="body">
-    <div class="player" @click="isPaused()" title="点击播放/暂停">
-      🎶
-      <audio preload muted loop :src="url" id="media">您的浏览器不支持 audio 与元素。</audio>
+    <audio
+      preload
+      muted
+      loop
+      src="https://m7.music.126.net/20191012191036/7b85b322c7e39024b3d1a9fe0ef494cd/ymusic/5258/0f5f/015c/e23eb784398544031837660e6d233a6e.mp3"
+      ref="audio"
+      id="audio"
+    >您的浏览器不支持 audio 与元素。</audio>
+    <div class="player-btn" @click="playControl">
+      <img v-if="isplay===false" src="../assets/play.png" alt />
+      <img v-else src="../assets/pause.png" alt />
     </div>
-    <!-- <div class="msg">{{singer}}=={{song}}</div> -->
-    <!-- 歌单 -->
-    <ul id="list" :class="{'show':isShow,'unshow':!isShow}">
-      <li
-        v-for="(v,k) in musicList"
-        :key="k"
-        @click="getMusic(musicList[k].id)"
-        class="item"
-        :class="{'active':cur ===k}"
-      >{{musicList[k].song}}💕{{musicList[k].singer}}</li>
-    </ul>
-    <div class="volume">
-      <div @click="addVolume" class="add">➕</div>
-      {{volume}}%
-      <div @click="minusVolume" class="minus">➖</div>
+    <div class="player-body">
+      <div class="msg">
+        <p>💕{{name}}</p>
+        <p>🎙{{singer}}</p>
+        <p>播放进度：{{cur}}%</p>
+      </div>
+      <div class="controller">
+        <ProgressBar
+          :init="init"
+          @valChange="valChange"
+          @moveDown="moveDown"
+          :cur="currentTime"
+          @moving="moving"
+        ></ProgressBar>
+      </div>
     </div>
-    <div class="btn" @click="isShow?isShow=!isShow:isShow=!isShow">{{word}}</div>
   </div>
 </template>
 
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-let isRoutate;
+import ProgressBar from "./ProgressBar";
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+
+  components: {
+    ProgressBar
+  },
   data() {
     //这里存放数据
     return {
-      isShow: false,
-      music: [],
-      singer: "",
-      song: "",
-      url: "",
-      deg: 0,
-      //true开始
-      paused: false,
-      musicList: [
-        {
-          singer: "",
-          song: "",
-          id: ""
-        }
-      ],
-      cur: "",
-      volume: "100"
+      // 歌曲属性
+      time: null,
+      name: "起风了",
+      singer: "吴青峰",
+      //播放进度值（百分比值）
+      init: 0, //初始值
+      cur: 0, //双向绑定
+      currentTime: 0, //当前值
+      //false表示当前没播放
+      isplay: false,
+      //判断滑动是否结束
+      isMoveDown: null,
+      //定时器
+      timer: null,
+      //是否正在拖动
+      isMoving: null
     };
   },
   //监听属性 类似于data概念
-  computed: {
-    word() {
-      if (this.isShow) {
-        return "关闭歌单";
-      } else {
-        return "显示歌单";
-      }
-    }
-  },
+  computed: {},
   //监控data中的数据变化
   watch: {
-    paused(value) {
-      if (value) {
-        isRoutate = setInterval(this.rotate, 20);
-      } else {
-        clearInterval(isRoutate);
+    //确保移动停止再修改当前播放节点
+    isMoveDown() {
+      if (this.isMoveDown) {
+        this.toTarget();
+        this.isMoveDown = null;
+      }
+    },
+    //确保移动过程中停止进度条自动滚动事件
+    isMoving() {
+      if (this.isMoving) {
+        this.stopFllow();
+      }
+      this.isMoving = null;
+    },
+    //进度条的进度改变后
+    async cur(val) {
+      this.currentTime = await val;
+      if (this.isplay === false) {
+        audio.play();
+        this.isplay = true;
+        //获取歌曲的完整长度
+        this.time = Math.floor(audio.duration);
+        //判断播放的起始位置
+        audio.currentTime = (Math.floor(this.cur) / 100) * this.time;
+        this.follow();
       }
     }
   },
   //方法集合
   methods: {
-    async getMusic(id) {
-      //get数据
-      const res = await this.$http.get(
-        `https://api.imjad.cn/cloudmusic/?type=song&id=` + id + `&br=320000`
-      );
-      this.music = res.data;
-      this.url = this.music.data[0].url;
-      //根据id和歌单进行匹配,渲染出歌手和歌曲
-      let index;
-      for (let i = 0; i < this.musicList.length; i++) {
-        if (this.musicList[i].id === id) {
-          index = i;
-          break;
-        }
-      }
-      this.singer = this.musicList[index].singer;
-      this.song = this.musicList[index].song;
-      this.cur = index;
-      //选择播放其他歌曲?reload():isPaused()
-      this.$nextTick(function() {
-        this.reload();
-        // this.isPaused()
-      });
+    //双向绑定props
+    valChange(val) {
+      this.cur = val;
     },
-
-    async fetchList() {
-      const res = await this.$http.get("musics/list");
-      this.musicList = res.data;
-      this.$nextTick(function() {
-        this.getMusic(this.musicList[0].id);
-      });
-    },
-    isPaused() {
-      let audio = document.getElementById("media");
-      if (audio.paused) {
-        //判断当前的状态是否为暂停，若是则点击播放，否则暂停
+    //播放or暂停
+    playControl() {
+      let audio = this.$refs.audio;
+      //false表示当前没播放
+      if (this.isplay === false) {
         audio.play();
-        this.paused = true;
+        this.isplay = true;
+        //获取歌曲的完整长度
+        this.time = Math.floor(audio.duration);
+        //判断播放的起始位置
+        audio.currentTime = (Math.floor(this.cur) / 100) * this.time;
+        this.follow();
       } else {
         audio.pause();
-        this.paused = false;
+        this.isplay = false;
+        this.stopFllow();
       }
     },
-    reload() {
-      let audio = document.getElementById("media");
-      audio.play();
-      this.paused = true;
-      this.deg = 0;
+    //到指定时间开始播放
+    async toTarget() {
+      await this.stopFllow();
+      let audio = this.$refs.audio;
+      audio.currentTime = (Math.floor(this.cur) / 100) * this.time;
+      this.follow();
     },
-    rotate() {
-      let player = document.getElementsByClassName("player")[0];
-      player.style.transform = "rotate(" + this.deg + "deg)";
-      this.deg += 1;
-      if (this.deg === 360) {
-        this.deg = 0;
+    //判断进度条拖动是否停止
+    moveDown(data) {
+      this.isMoveDown = data;
+    },
+    //判断进度条拖动是否正在拖动
+    moving(data) {
+      this.isMoving = data;
+    },
+    //进度条自动滚动
+    follow() {
+      let _this = this;
+      let curTime;
+      let audio = this.$refs.audio;
+      if (this.timer == null) {
+        this.timer = setInterval(function() {
+          curTime = audio.currentTime; //获取当前的播放时间
+          _this.currentTime = Math.floor((curTime / audio.duration) * 100);
+        }, 0);
       }
     },
-    addVolume() {
-      // this.$TOAST("点击了增加按钮");
-      console.log(document.getElementById("media").volume);
-      if (document.getElementById("media").volume < 1) {
-        this.volume += 10;
-        document.getElementById("media").volume = this.volume / 100;
-      } else {
-        this.$TOAST("最大声了");
-      }
-    },
-    minusVolume() {
-      // this.$TOAST("点击了减少按钮");
-      console.log(document.getElementById("media").volume);
-      if (document.getElementById("media").volume > 0) {
-        this.volume -= 10;
-        document.getElementById("media").volume = this.volume / 100;
-      } else {
-        this.$TOAST("没声了");
-      }
+    //进度条滚动停止
+    stopFllow() {
+      clearInterval(this.timer);
+      this.timer = null;
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-    this.fetchList();
-  },
+  created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {},
   beforeCreate() {}, //生命周期 - 创建之前
@@ -169,121 +165,54 @@ export default {
 };
 </script>
 <style  scoped>
-.player {
-  position: fixed;
-  top: 5rem;
-  right: 0.4rem;
-  width: 6rem;
-  height: 6rem;
-  background: wheat;
+.body {
+  width: 46rem;
+  height: 8rem;
+  position: absolute;
+  top: 10rem;
+  right: 20%;
+  user-select: none;
+  box-shadow: 0.2rem 0.2rem 0.8rem #888;
+  background: #ffffff;
+}
+.player-btn {
+  float: left;
+  width: 20%;
+  height: 100%;
+  background: transparent;
+  box-shadow: 0.4rem 0 0.8rem #888;
+}
+.player-btn img {
+  max-width: 40%;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.player-body {
+  display: inline-block;
+  width: 80%;
+  height: 100%;
+}
+.msg {
+  width: 90%;
+  height: 76%;
+  margin: 0 5%;
   text-align: center;
-  line-height: 6rem;
-  font-size: 2rem;
-  border-radius: 50%;
-  user-select: none;
-  box-shadow: 0.2rem 0.2rem 0.8rem #888;
+  display: inline-block;
 }
-.show {
-  right: 0;
-}
-.unshow {
-  right: -90%;
-}
-ul {
-  position: fixed;
-  top: 20rem;
-  right: 0;
-  background: wheat;
-  user-select: none;
-  box-shadow: 0.2rem 0.2rem 0.8rem #888;
-  transition: 0.2s;
-}
-li {
+.msg > p {
   font-size: 1.2rem;
-  line-height: 1.5;
-  margin: 1rem;
-  font-weight: bolder;
-  transition: 0.2s;
+  margin-top: 0.4rem;
 }
-.btn {
-  position: fixed;
-  top: 17rem;
-  right: 0;
-  background: wheat;
-  text-align: center;
-  font-size: 1.2rem;
-  line-height: 1.5;
-  padding: 0.7rem 0.8rem;
-  user-select: none;
-  box-shadow: 0.2rem 0.2rem 0.8rem #888;
+.controller {
+  display: inline-block;
+  width: 100%;
+  height: 24%;
 }
-
 @media screen and (max-width: 1000px) {
   .body {
     display: none;
   }
-}
-.msg {
-  position: fixed;
-  top: 8rem;
-  right: 10rem;
-  background: white;
-  user-select: none;
-  box-shadow: 0.2rem 0.2rem 0.8rem #888;
-  padding: 0.6rem;
-}
-.right {
-  text-align: right;
-}
-.item {
-  opacity: 0.4;
-}
-.active {
-  opacity: 1;
-}
-.volume {
-  position: fixed;
-  top: 12rem;
-  right: 0;
-  background: wheat;
-  user-select: none;
-  box-shadow: 0.2rem 0.2rem 0.8rem #888;
-  line-height: 4rem;
-  height: 4rem;
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: bolder;
-  border-radius: 2rem;
-  /* transform: rotate(90deg) */
-  opacity: 0.4;
-  transition: 1s;
-}
-
-.volume:hover {
-  opacity: 1;
-}
-
-.add {
-  font-size: 1.2rem;
-  text-align: center;
-  display: inline-block;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  line-height: 3rem;
-  background: wheat;
-  margin: 0 1rem;
-}
-.minus {
-  font-size: 1.2rem;
-  font-weight: bolder;
-  text-align: center;
-  display: inline-block;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  line-height: 3rem;
-  background: wheat;
-  margin: 0 1rem;
 }
 </style>
