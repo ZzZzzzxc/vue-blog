@@ -81,12 +81,13 @@ export default {
     //   通过三个鼠标事件：点击、移动、抬起，只要计算出当前位置即可
     this.process = this.$refs.process;
     this.contact = this.$refs.contact;
-    this.preX = this.contact.getBoundingClientRect().x;
+
     let _this = this;
+    this.preX = this.contact.getBoundingClientRect().x;
     this.process.onmousedown = function(e) {
       let preX = parseInt(_this.preX);
       let disX = parseInt(e.clientX);
-      let newWidth = disX - preX;
+      let newWidth = disX - preX < 0 ? preX - disX : disX - preX;
       let scale = newWidth / _this.process.offsetWidth;
       _this.value = Math.ceil((_this.max - _this.min) * scale + _this.min);
       _this.value = Math.max(_this.value, _this.min);
@@ -115,7 +116,7 @@ export default {
         _this.value = Math.ceil((_this.max - _this.min) * scale + _this.min);
         _this.value = Math.max(_this.value, _this.min);
         _this.value = Math.min(_this.value, _this.max);
-        
+
         _this.$emit("moving", true);
       };
       //鼠标离开阶段
@@ -138,7 +139,7 @@ export default {
 </script>
 <style  scoped>
 .bar-body {
-  width: 100%;
+  width: 90%;
   height: 100%;
   /* margin: 0 5%; */
 }
@@ -146,8 +147,7 @@ export default {
   position: relative;
   height: 40%;
   top: 30%;
-  background: gray;
-  
+  background: #dadada;
 }
 .process {
   position: absolute;
@@ -155,7 +155,7 @@ export default {
   /* width: 100%; */
   height: 100%;
   /* top: 30%; */
-  background: #409eff;
+  background: rgb(65, 184, 131);
 }
 .contact {
   position: absolute;
@@ -167,10 +167,10 @@ export default {
   background: #ffffff;
   cursor: pointer;
   top: -100%;
-  border: 0.1rem solid #409eff;
+  border: 0.1rem solid rgb(65, 184, 131);
 }
 .contact:hover {
-  background:  #409eff;
-   box-shadow: 0.2rem 0.2rem 0.8rem #888;
+  background: rgb(65, 184, 131);
+  box-shadow: 0.2rem 0.2rem 0.8rem #888;
 }
 </style>

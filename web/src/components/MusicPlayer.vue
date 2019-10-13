@@ -1,31 +1,42 @@
 <template>
-  <div class="body">
-    <audio
-      preload
-      muted
-      loop
-      src="https://m7.music.126.net/20191012191036/7b85b322c7e39024b3d1a9fe0ef494cd/ymusic/5258/0f5f/015c/e23eb784398544031837660e6d233a6e.mp3"
-      ref="audio"
-      id="audio"
-    >您的浏览器不支持 audio 与元素。</audio>
-    <div class="player-btn" @click="playControl">
-      <img v-if="isplay===false" src="../assets/play.png" alt />
-      <img v-else src="../assets/pause.png" alt />
+  <div id="body" @mouseenter="show" @mouseleave="hide()">
+    <audio preload muted loop :src="url" ref="audio" id="audio">您的浏览器不支持 audio 与元素。</audio>
+    <div class="player-btn" @click="playControl" v-if="isHide===false">
+      <img v-if="isHide===false&&isplay===false" src="../assets/play.png" alt />
+      <img v-if="isHide===false&&isplay===true" src="../assets/pause.png" alt />
+      <img v-if="isHide===true" src="../assets/backward.png" title="显示播放器" alt />
     </div>
+    <div class="show-btn" @click="show" v-if="isHide===true">
+      <img src="../assets/backward.png" title="显示播放器" alt />
+    </div>
+
     <div class="player-body">
-      <div class="msg">
-        <p>💕{{name}}</p>
-        <p>🎙{{singer}}</p>
-        <p>播放进度：{{cur}}%</p>
+      <div class="msg" ref="msg">
+        <p :key="1">💕{{song}}</p>
+        <p :key="2">🎙{{singer}}</p>
+        <p :key="3">播放进度：{{cur}}%</p>
       </div>
+
       <div class="controller">
-        <ProgressBar
-          :init="init"
-          @valChange="valChange"
-          @moveDown="moveDown"
-          :cur="currentTime"
-          @moving="moving"
-        ></ProgressBar>
+        <div class="progess">
+          <ProgressBar
+            :init="init"
+            @valChange="valChange"
+            @moveDown="moveDown"
+            :cur="currentTime"
+            @moving="moving"
+          ></ProgressBar>
+        </div>
+        <div class="volume" @click="isTrunOn">
+          <img v-if="isVolume===true" src="../assets/quieter.png" alt title="静音" />
+          <img v-else src="../assets/turn_off.png" title="开启声音" alt />
+        </div>
+        <div class="next" @click="next">
+          <img src="../assets/next.png" title="下一首" alt />
+        </div>
+        <div class="list">
+          <img src="../assets/quarter_note.png" title="歌单" alt />
+        </div>
       </div>
     </div>
   </div>
@@ -46,7 +57,9 @@ export default {
     return {
       // 歌曲属性
       time: null,
-      name: "起风了",
+      url:
+        "https://m7.music.126.net/20191012191036/7b85b322c7e39024b3d1a9fe0ef494cd/ymusic/5258/0f5f/015c/e23eb784398544031837660e6d233a6e.mp3",
+      song: "起风了",
       singer: "吴青峰",
       //播放进度值（百分比值）
       init: 0, //初始值
@@ -59,7 +72,15 @@ export default {
       //定时器
       timer: null,
       //是否正在拖动
-      isMoving: null
+      isMoving: null,
+      //是否静音
+      isVolume: true,
+      //是否隐藏播放器
+      isHide: false,
+      //请求的数据
+      musicList: [],
+      //当前的歌曲序号
+      curIndex: 0
     };
   },
   //监听属性 类似于data概念
@@ -91,6 +112,17 @@ export default {
         //判断播放的起始位置
         audio.currentTime = (Math.floor(this.cur) / 100) * this.time;
         this.follow();
+      }
+    },
+    //切歌
+    async curIndex(val) {
+      await this.getMusic(val);
+      if (this.isplay) {
+        audio.play();
+      } else {
+        // this.isplay = false;
+        // this.stopFllow();
+        // this.playControl()
       }
     }
   },
@@ -149,12 +181,63 @@ export default {
     stopFllow() {
       clearInterval(this.timer);
       this.timer = null;
+    },
+    //静音
+    isTrunOn() {
+      let audio = this.$refs.audio;
+      //false表示静音
+      if (this.isVolume) {
+        (audio.volume = 0), (this.isVolume = false);
+      } else {
+        (audio.volume = 1), (this.isVolume = true);
+      }
+    },
+    //隐藏播放器
+    hide() {
+      document.getElementById("body").style.right = "-36rem";
+      this.isHide = true;
+    },
+    //显示播放器
+    show() {
+      document.getElementById("body").style.right = "0";
+      this.isHide = false;
+    },
+    //下一首
+    next() {
+      if (this.curIndex < this.musicList.length - 1) {
+        this.curIndex++;
+      } else {
+        this.curIndex = 0;
+      }
+    },
+    //请求
+    async getMusic(index) {
+      let id = this.musicList[index].id;
+      //get数据
+      const res = await this.$http.get(
+        `https://api.imjad.cn/cloudmusic/?type=song&id=` + id + `&br=320000`
+      );
+      this.url = res.data.data[0].url;
+      this.song = this.musicList[index].song;
+      this.singer = this.musicList[index].singer;
+    },
+
+    async fetchList() {
+      const res = await this.$http.get("musics/list");
+      this.musicList = res.data;
+      this.$nextTick(function() {
+        this.getMusic(0);
+      });
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.fetchList();
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    this.hide();
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -165,22 +248,25 @@ export default {
 };
 </script>
 <style  scoped>
-.body {
+#body {
   width: 46rem;
   height: 8rem;
-  position: absolute;
-  top: 10rem;
-  right: 20%;
+  position: fixed;
+  top: 6rem;
+  /* right: -36rem; */
+  right: 0;
   user-select: none;
-  box-shadow: 0.2rem 0.2rem 0.8rem #888;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.8);
+  transition: 0.8s;
+}
+#body:hover {
+  background: rgba(255, 255, 255, 1);
 }
 .player-btn {
   float: left;
   width: 20%;
   height: 100%;
-  background: transparent;
-  box-shadow: 0.4rem 0 0.8rem #888;
+  background-color: rgb(65, 184, 131);
 }
 .player-btn img {
   max-width: 40%;
@@ -196,7 +282,7 @@ export default {
 }
 .msg {
   width: 90%;
-  height: 76%;
+  height: 80%;
   margin: 0 5%;
   text-align: center;
   display: inline-block;
@@ -207,11 +293,67 @@ export default {
 }
 .controller {
   display: inline-block;
+  height: 20%;
   width: 100%;
-  height: 24%;
+  padding: 0 10%;
+}
+.progess {
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+}
+.list {
+  display: inline-block;
+  height: 100%;
+  width: 10%;
+}
+.list img {
+  max-width: 100%;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.next {
+  display: inline-block;
+  height: 100%;
+  width: 10%;
+}
+.next img {
+  max-width: 100%;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.volume {
+  display: inline-block;
+  height: 100%;
+  width: 10%;
+}
+.volume img {
+  max-width: 100%;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.show-btn {
+  float: left;
+  width: 20%;
+  height: 100%;
+  background-color: rgb(65, 184, 131);
+}
+.show-btn img {
+  max-width: 40%;
+  position: relative;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
 }
 @media screen and (max-width: 1000px) {
-  .body {
+  #body {
     display: none;
   }
 }
