@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class>
-    <div @click="backToTop" title="回到顶部">🎈</div>
+    <div @click="backToTop" title="回到顶部"><img src="../assets/ballon.png" style="display:inline-block;max-width:60%;margin:0 auto;" ></div>
   </div>
 </template>
 
@@ -57,9 +57,11 @@ div {
   font-size: 2.4rem;
   font-weight: bolder;
   user-select: none;
-  padding: 0 1rem;
   background: rgb(22, 149, 187, 0.1);
   transition: 1s;
+  display: flex;
+justify-content: center;
+align-items: center;
 }
 div:hover {
   width: 6.6rem;
@@ -70,6 +72,7 @@ div:hover {
   top: 64.4rem;
   background: rgb(200, 227, 235);
   box-shadow: 0.1rem 0.1rem 1.8rem #888;
+  border-radius: 30%;
   /* transform: rotate(20deg) */
 }
 

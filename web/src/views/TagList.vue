@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="tag-card-body">
-    <div class="title">标签云☁</div>
+    <div class="title">标签云<img src="../assets/cloud.png" style="display:inline-block;max-width:2.6rem" ></div>
     <TagCard v-for="(value,key) in tagList" :key="key" :tagList="tagList" :index="key" />
     <div class="footer line"></div>
   </div>

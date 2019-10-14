@@ -3,7 +3,7 @@
   <div class="notice-body" ref="notice" @click="$TOAST('不要点我')">
     <div>^^</div>
     <div class="title">公告牌</div>
-    <div class="start">没事，我就是想</div>
+    <div class="start">欢迎来到小站</div>
     <div class="context">💋</div>
   </div>
 </template>

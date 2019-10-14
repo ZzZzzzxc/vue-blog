@@ -59,7 +59,13 @@ const router = new Router({
           name:'todo',
           // component:Todo
           component: () => import(/* webpackChunkName: "layout" */ './views/Todo.vue'),
-        }
+        },
+        {
+          path:'/friend',
+          name:'friend',
+          // component:Todo
+          component: () => import(/* webpackChunkName: "layout" */ './views/Friend.vue'),
+        },
       ]
     },
     {

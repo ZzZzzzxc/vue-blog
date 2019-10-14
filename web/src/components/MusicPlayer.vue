@@ -194,7 +194,7 @@ export default {
     },
     //隐藏播放器
     hide() {
-      document.getElementById("body").style.right = "-36rem";
+      document.getElementById("body").style.right = "-40rem";
       this.isHide = true;
     },
     //显示播放器
@@ -314,6 +314,9 @@ export default {
   top: 50%;
   transform: translateY(-50%);
 }
+.list img:hover{
+  min-width: 110%;
+}
 .next {
   display: inline-block;
   height: 100%;
@@ -325,6 +328,9 @@ export default {
   margin: 0 auto;
   top: 50%;
   transform: translateY(-50%);
+}
+.next img:hover{
+  min-width: 110%;
 }
 .volume {
   display: inline-block;
@@ -338,10 +344,12 @@ export default {
   top: 50%;
   transform: translateY(-50%);
 }
-
+.volume img:hover{
+  min-width: 110%;
+}
 .show-btn {
   float: left;
-  width: 20%;
+  width: 10%;
   height: 100%;
   background-color: rgb(65, 184, 131);
 }
@@ -352,6 +360,7 @@ export default {
   top: 50%;
   transform: translateY(-50%);
 }
+
 @media screen and (max-width: 1000px) {
   #body {
     display: none;

@@ -2,12 +2,13 @@
 <template>
   <nav ref="nav">
     <div class="container">
-      <router-link tag='div' to="/" class="logo">BLOG</router-link>
+      <router-link tag='div' to="/" class="logo"><img src="../assets/dog.png" style="display:inline-block;max-width:2rem" >BLOG</router-link>
       <ul v-show="isShow">
-        <router-link to="/" tag="li">首页🈚</router-link>
-        <router-link to="/about" tag="li">至于我💦</router-link>
-        <router-link to="/archieve" tag="li">归档📃</router-link>
-        <router-link to="/todo" tag="li">TODO</router-link>
+        <router-link to="/" tag="li"><img src="../assets/dog.png" style="display:inline-block;max-width:1.4rem" >首页</router-link>
+        <router-link to="/about" tag="li"><img src="../assets/dog.png" style="display:inline-block;max-width:1.8rem" >关于我</router-link>
+        <router-link to="/archieve" tag="li"><img src="../assets/dog.png" style="display:inline-block;max-width:2.2rem" >归档</router-link>
+        <router-link to="/friend" tag="li"><img src="../assets/dog.png" style="display:inline-block;max-width:2.6rem" >友链</router-link>
+        <router-link to="/todo" tag="li"><img src="../assets/dog.png" style="display:inline-block;max-width:3rem" >TODO</router-link>
       </ul>
       <div class="btn"  @click.stop="didClickMenus">More</div>
     </div>

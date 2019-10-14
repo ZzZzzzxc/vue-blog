@@ -52,7 +52,7 @@ export default {
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     //打字特效
-    Input.input("我干了什么 究竟拿了时间换了什么", "Hello World");
+    Input.input("欢迎来到我的博客，喜欢可以收藏", "Welcome to my blog，If you like it, please collect it");
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
@@ -67,7 +67,7 @@ export default {
 #header {
   position: relative;
   /* top: -5rem; */
-  background-image: url("../assets/home-bg.jpg");
+  background-image: url("../assets/sky.jpg");
   height: 34rem;
   width: 100%;
   background-color: #fff;
@@ -75,7 +75,7 @@ export default {
   background-size: cover;
   -webkit-background-size: cover;
   -o-background-size: cover;
-  background-position: center 60%;
+  background-position: center 20%;
   transition: 0.5s;
   background-size: 100%;
   user-select: none;

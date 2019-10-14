@@ -3,7 +3,8 @@
   <div class="footer">
     <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
     <div class="copyright">Copyright © Zhangxc Blog 2019</div>
-    <div class="power">Powered by Zhangxc Blog</div>
+    <div class="power">Powered by <a href="http://www.zhangxc.cn">Zhangxc Blog</a> && Vue && Express</div>
+    <div class="msg"><a href="http://icp.chinaz.com/info?q=zhangxc.cn">粤ICP备19099522号-1</a></div>
   </div>
 </template>
 
@@ -47,6 +48,9 @@ export default {
   font-size: 1.6rem;
 }
 
+a{
+  color: black;
+}
 @media screen and (max-width: 799px) {
   .footer {
     width: 100%;
