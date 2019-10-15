@@ -1,8 +1,19 @@
+<!--  -->
 <template>
-  <div
-    class="tag-body"
-    @click="$router.push(`/tags/${tagList[index]._id}`)"
-  >{{tagList[index].name}} <sup >{{tagList[index].num}}</sup> </div>
+  <div class="social-card">
+    <a href='https://github.com/ZzZzzzxc' target="blank">
+      <img src="../assets/GitHub.png" alt />
+    </a>
+    <a href target="blank">
+      <img src="../assets/zhihu.png" alt />
+    </a>
+    <a href target="blank">
+      <img src="../assets/email.png" alt />
+    </a>
+     <a href target="blank">
+      <img src="../assets/steam.png" alt />
+    </a>
+  </div>
 </template>
 
 <script>
@@ -12,10 +23,6 @@
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
-  props: {
-    tagList: Array,
-    index: Number
-  },
   data() {
     //这里存放数据
     return {};
@@ -39,26 +46,17 @@ export default {
   activated() {} //如果页面有keep-alive缓存功能，这个函数会触发
 };
 </script>
-<style  scoped>
-.tag-body {
-  display: inline-block;
-  height: 3rem;
-  line-height: 3rem;
-  border: 0.1rem solid #888;
-  padding: 0 1rem;
-  border-radius: 3rem;
-  margin: 0.8rem 0.8rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-  user-select:none;
-  position: relative;
+<style scoped>
+.social-card {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
 }
-.tag-body:hover {
-  box-shadow: 0.2rem 0.2rem 0.8rem #888;
-}
-sup{
-  font-weight: bolder;
-  position: absolute;
-  top: -0.4rem;
+img {
+  max-width: 60%;
 }
 </style>

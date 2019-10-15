@@ -8,19 +8,19 @@
             <p>放一些大佬的Blog（以下排名不分先后）</p>
             <ul>
               <li>
-                <a href="https://huangxuan.me/" target="view_window">黄玄的博客</a>
+                <a href="https://huangxuan.me/" target="blank1">黄玄的博客</a>
               </li>
               <li>
-                <a href="https://xin-tan.com/" target="view_window">心谭博客</a>
+                <a href="https://xin-tan.com/" target="blank2">心谭博客</a>
               </li>
               <li>
-                <a href="https://ainyi.com/" target="view_window">Krryblog-你的美好我都记得</a>
+                <a href="https://ainyi.com/" target="blank3">Krryblog-你的美好我都记得</a>
               </li>
               <li>
-                <a href="http://www.ruanyifeng.com/blog/" target="view_window">阮一峰的网络日志</a>
+                <a href="http://www.ruanyifeng.com/blog/" target="blank4">阮一峰的网络日志</a>
               </li>
               <li>
-                <a href="https://biaochenxuying.cn/" target="view_window">夜尽天明的个人博客网站</a>
+                <a href="https://biaochenxuying.cn/" target="blank5">夜尽天明的个人博客网站</a>
               </li>
             </ul>
             <p>我以前的hexo小博客</p>

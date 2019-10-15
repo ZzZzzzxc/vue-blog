@@ -8,6 +8,7 @@
     <div class="word">{{model[0].description}}</div>
     <div class="word">{{model[0].context}}</div>
     <div class="social"></div>
+    <SocialCard />
     <div class="footer line"></div>
   </div>
 </template>
@@ -15,10 +16,10 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-
+import SocialCard from "./SocialCard";
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: {},
+  components: { SocialCard },
   data() {
     //这里存放数据
     return {
@@ -65,7 +66,7 @@ export default {
   /* background: blue; */
   padding: 3%;
   box-shadow: 0.5rem 0.5rem 1.8rem #888;
-  transform: rotate(-5deg);
+  /* transform: rotate(-5deg); */
   user-select: none;
 }
 .card-body > * {
@@ -85,18 +86,9 @@ img {
   /* border-radius: 50%; */
   border-radius: 1rem;
   transition: 0.5s;
-  transform: rotate(-10deg);
+  /* transform: rotate(-10deg); */
 }
-.avatar:hover {
-  width: 80%;
-  margin: 2rem auto;
-}
-img:hover {
-  box-shadow: 0.7rem 0.8rem 1rem #dc5bf0, -1rem -1rem 2rem #c9c91e;
-  /* border-radius: 1rem; */
-  border-radius: 50%;
-  transform: rotate(360deg);
-}
+
 .word {
   color: #ccc;
   font-size: 1.4rem;

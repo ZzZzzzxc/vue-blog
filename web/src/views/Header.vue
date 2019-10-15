@@ -52,7 +52,7 @@ export default {
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
     //打字特效
-    Input.input("欢迎来到我的博客，喜欢可以收藏", "Welcome to my blog，If you like it, please collect it");
+    Input.input("欢迎来到我的小站，喜欢可以收藏。", "Welcome to my blog，If you like it, please collect it.");
   },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前

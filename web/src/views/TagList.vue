@@ -65,7 +65,7 @@ export default {
   /* background: blue; */
   padding: 3%;
   box-shadow: 0.5rem 0.5rem 1.8rem #888;
-  transform: rotate(5deg)
+  /* transform: rotate(5deg) */
 }
 
 .title {
