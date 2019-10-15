@@ -100,8 +100,7 @@ module.exports = app => {
     if (req.Model.modelName === "Article") {
       queryOptions.populate = "tag";
     }
-    const items = await req.Model.find().setOptions(queryOptions);
-    // .limit(100);
+    const items = await req.Model.find({},{context:0}).setOptions(queryOptions);
     res.send(items);
   });
   //获取某个分类的具体信息
@@ -118,17 +117,17 @@ module.exports = app => {
     router
   );
 
-  //处理文件上传
+  // 处理文件上传
   const multer = require("multer");
   const upload = multer({ dest: __dirname + "/../../uploads" });
   app.post("/admin/api/upload", upload.single("file"), async (req, res) => {
     const file = req.file;
     file.url = `http://zhangxc.cn/uploads/${file.filename}`;
-    
+
     // file.url = `http://localhost:3000/uploads/${file.filename}`;
-    console.log(file)
     res.send(file);
   });
+
 
   app.post("/admin/api/login", async (req, res) => {
     const { username, password } = req.body;
