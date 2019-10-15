@@ -70,7 +70,7 @@ export default {
 #header {
   position: relative;
   /* top: -5rem; */
-  background-image: url("../assets/sky.jpg");
+  background-image: url("https://vue-blog-1259658719.cos.ap-chengdu.myqcloud.com/sky.jpg");
   height: 34rem;
   width: 100%;
   background-color: #fff;
