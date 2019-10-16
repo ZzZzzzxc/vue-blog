@@ -1,6 +1,5 @@
 module.exports = {
-  baseUrl: "./",
-  publicPath:'../../',
+  publicPath:'https://vue-blog-1259658719.cos.ap-chengdu.myqcloud.com/web/',
   outputDir: __dirname + "/../server/web",
   productionSourceMap: false,
   // publicPath: process.env.NODE_ENV === 'production'
