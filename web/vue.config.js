@@ -1,13 +1,13 @@
+// const CompressionPlugin = require("compression-webpack-plugin");
 module.exports = {
-  publicPath:'https://vue-blog-1259658719.cos.ap-chengdu.myqcloud.com/web/',
+  publicPath: "https://vue-blog-1259658719.cos.ap-chengdu.myqcloud.com/web/",
+  // publicPath: "./",
   outputDir: __dirname + "/../server/web",
-  productionSourceMap: false,
   // publicPath: process.env.NODE_ENV === 'production'
   //   ? '/'
   //   : '/'
   chainWebpack: config => {
     // 删除预加载
-    config.plugins.delete("preload");
     config.plugins.delete("prefetch");
     // 压缩代码
     config.optimization.minimize(true);
@@ -16,7 +16,17 @@ module.exports = {
       chunks: "all"
     });
   },
-
+  // configureWebpack: config => {
+  //   config.plugins.push(
+  //     new CompressionPlugin({
+  //       // 正在匹配需要压缩的文件后缀
+  //       test: /\.(js|css|svg|woff|ttf|json|html)$/,
+  //       // 大于10kb的会压缩
+  //       threshold: 10240
+  //       // 其余配置查看compression-webpack-plugin
+  //     })
+  //   );
+  // },
   css: {
     // 是否使用css分离插件 ExtractTextPlugin
 

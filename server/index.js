@@ -10,7 +10,7 @@ app.use(require("cors")());
 //静态资源托管
 app.use("/admin", express.static(__dirname + "/admin"));
 app.use("/uploads", express.static(__dirname + "/uploads"));
-app.use("/", express.static(__dirname + "/web"));
+// app.use("/", express.static(__dirname + "/web"));
 
 //设置一个密钥
 app.set("secret", "i2u34y12oi3u4y8");

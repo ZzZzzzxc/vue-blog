@@ -81,12 +81,13 @@ export default {
     //   通过三个鼠标事件：点击、移动、抬起，只要计算出当前位置即可
     this.process = this.$refs.process;
     this.contact = this.$refs.contact;
-
     let _this = this;
     this.preX = this.contact.getBoundingClientRect().x;
     this.process.onmousedown = function(e) {
       let preX = parseInt(_this.preX);
+      // console.log('小球位置'+preX)
       let disX = parseInt(e.clientX);
+      // console.log('点击位置'+disX)
       let newWidth = disX - preX < 0 ? preX - disX : disX - preX;
       let scale = newWidth / _this.process.offsetWidth;
       _this.value = Math.ceil((_this.max - _this.min) * scale + _this.min);

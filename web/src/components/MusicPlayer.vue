@@ -57,10 +57,9 @@ export default {
     return {
       // 歌曲属性
       time: null,
-      url:
-        "https://m7.music.126.net/20191012191036/7b85b322c7e39024b3d1a9fe0ef494cd/ymusic/5258/0f5f/015c/e23eb784398544031837660e6d233a6e.mp3",
-      song: "起风了",
-      singer: "吴青峰",
+      url: null,
+      song: "正在努力搜寻歌曲。。。",
+      singer: "api是挂了吗/(ㄒoㄒ)/~~",
       //播放进度值（百分比值）
       init: 0, //初始值
       cur: 0, //双向绑定
@@ -108,7 +107,7 @@ export default {
         audio.play();
         this.isplay = true;
         //获取歌曲的完整长度
-        this.time = Math.floor(audio.duration);
+        this.getTime();
         //判断播放的起始位置
         audio.currentTime = (Math.floor(this.cur) / 100) * this.time;
         this.follow();
@@ -116,14 +115,14 @@ export default {
     },
     //切歌
     async curIndex(val) {
+      let audio = this.$refs.audio;
       await this.getMusic(val);
-      if (this.isplay) {
-        audio.play();
-      } else {
-        // this.isplay = false;
-        // this.stopFllow();
-        // this.playControl()
-      }
+      await audio.play();
+      this.isplay = true;
+      this.getTime();
+    },
+    url(val) {
+      // console.log(val);
     }
   },
   //方法集合
@@ -131,6 +130,9 @@ export default {
     //双向绑定props
     valChange(val) {
       this.cur = val;
+      if (val == 99) {
+        this.next();
+      }
     },
     //播放or暂停
     playControl() {
@@ -140,7 +142,7 @@ export default {
         audio.play();
         this.isplay = true;
         //获取歌曲的完整长度
-        this.time = Math.floor(audio.duration);
+        this.getTime();
         //判断播放的起始位置
         audio.currentTime = (Math.floor(this.cur) / 100) * this.time;
         this.follow();
@@ -217,7 +219,7 @@ export default {
       const res = await this.$http.get(
         `https://api.imjad.cn/cloudmusic/?type=song&id=` + id + `&br=320000`
       );
-      this.url = res.data.data[0].url;
+      this.url = await res.data.data[0].url;
       this.song = this.musicList[index].song;
       this.singer = this.musicList[index].singer;
     },
@@ -228,6 +230,10 @@ export default {
       this.$nextTick(function() {
         this.getMusic(0);
       });
+    },
+    getTime() {
+      let audio = this.$refs.audio;
+      this.time = Math.floor(audio.duration);
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -314,7 +320,7 @@ export default {
   top: 50%;
   transform: translateY(-50%);
 }
-.list img:hover{
+.list img:hover {
   min-width: 110%;
 }
 .next {
@@ -329,7 +335,7 @@ export default {
   top: 50%;
   transform: translateY(-50%);
 }
-.next img:hover{
+.next img:hover {
   min-width: 110%;
 }
 .volume {
@@ -344,12 +350,12 @@ export default {
   top: 50%;
   transform: translateY(-50%);
 }
-.volume img:hover{
+.volume img:hover {
   min-width: 110%;
 }
 .show-btn {
   float: left;
-  width: 10%;
+  width: 20%;
   height: 100%;
   background-color: rgb(65, 184, 131);
 }
