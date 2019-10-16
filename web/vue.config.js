@@ -1,6 +1,7 @@
 module.exports = {
   baseUrl: "./",
   outputDir: __dirname + "/../server/web",
+  productionSourceMap: false,
   // publicPath: process.env.NODE_ENV === 'production'
   //   ? '/'
   //   : '/'

@@ -1,12 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from './views/Layout.vue';
-// import HomeBody from './views/HomeBody.vue';
-// import AboutBody from './views/AboutBody.vue'
-// import ArchieveBody from './views/ArchieveBody.vue'
-// import ArticleShow from './views/ArticleShow.vue';
-// import Todo from './views/Todo.vue'
-// import Error from './views/Error.vue'
 
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
@@ -72,7 +66,7 @@ const router = new Router({
       path: '*',
         name: 'notfount',
         // component:Error,
-        component: () => import(/* webpackChunkName: "layout" */ './views/Error.vue'),
+        component: () => import(/* webpackChunkName: "notfount" */ './views/Error.vue'),
     }
   ]
 })
