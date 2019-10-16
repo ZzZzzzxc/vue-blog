@@ -118,6 +118,7 @@ export default {
       let audio = this.$refs.audio;
       await this.getMusic(val);
       await audio.play();
+      this.currentTime = 0
       this.isplay = true;
       this.getTime();
     },
