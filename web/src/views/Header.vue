@@ -84,6 +84,7 @@ export default {
   user-select: none;
   transition: background 3s;
   transition-duration: ease-in-out;
+  font-family: "Comic Sans MS", cursive, sans-serif !important;
 }
 
 #header:hover {
