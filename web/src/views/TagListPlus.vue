@@ -34,12 +34,10 @@ export default {
   //方法集合
   methods: {
     tagSort() {
-      console.log("tagSort");
       this.tagList = this.tagList.sort((l, r) => r.num - l.num);
     },
     colorful() {
       let ele = this.$refs.list;
-      console.log(ele[0]);
       for (let i = 0; i < ele.length; i++) {
         if (i < 1) {
           ele[i].$el.style.background = "rgba(255, 134, 50, .8)";

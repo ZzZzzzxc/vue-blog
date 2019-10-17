@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row clearfloat">
         <div class="row-3">
-          <ArticleList />
+          <ArticleListPlus />
         </div>
         <div class="row-1">
           <TagList />
@@ -18,14 +18,14 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import ArticleList from "./ArticleList";
+import ArticleListPlus from "./ArticleListPlus";
 import TagList from "./TagList";
 import PersonalCard from "../components/PersonalCard";
 export default {
   //import引入的组件需要注入到对象中才能使用
 
   components: {
-    ArticleList,
+    ArticleListPlus,
     TagList,
     PersonalCard
   },

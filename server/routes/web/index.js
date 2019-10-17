@@ -24,7 +24,7 @@ module.exports = app => {
   });
   //文章列表
   router.get("/articles/list", async (req, res) => {
-    const data = await Article.find({},{context:0,contentHtml:0,tags:0});
+    const data = await Article.find({},{context:0,contentHtml:0});
     // console.log(data)
     res.send(data);
   });

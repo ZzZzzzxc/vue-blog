@@ -1,12 +1,14 @@
 <!--  -->
 <template>
   <div class="card-body" @click="$router.push(`/articles/${articles[index]._id}`)">
-    <h2>{{articles[index].title}}</h2>
-    <h3>{{articles[index].subTitle}}</h3>
-    <div class="description">{{articles[index].description}}</div>
-    <div class="context of">{{articles[index].context}}</div>
-    <p class="time">发布于——{{articles[index].createTime}}</p>
-    <p class="time"> 最后编辑于——{{articles[index].lastEditTime}}</p>
+    <div class="card">
+      <h2>{{articles[index].title}}</h2>
+      <h3>{{articles[index].subTitle}}</h3>
+      <div class="description">{{articles[index].description}}</div>
+      <div class="context of">{{articles[index].context}}</div>
+      <p class="time">发布于——{{articles[index].createTime}}</p>
+      <p class="time">最后编辑于——{{articles[index].lastEditTime}}</p>
+    </div>
   </div>
 </template>
 
@@ -17,14 +19,13 @@
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {},
-  props:{
-      articles:Array,
-      index:Number
-      },
+  props: {
+    articles: Array,
+    index: Number
+  },
   data() {
     //这里存放数据
-    return {
-    };
+    return {};
   },
   //监听属性 类似于data概念
   computed: {},
@@ -47,39 +48,42 @@ export default {
 </script>
 <style scoped>
 .card-body {
+  position: relative;
+  height: 20rem;
   width: 98%;
-  margin: 1rem 1%;
   /* background: blue; */
-  padding: 3%;
+  padding: 0 3%;
+  margin: 0 auto;
   border-bottom: 0.1rem solid #a3a3a3;
   transition: 0.2s;
-  user-select:none;
+  user-select: none;
   line-height: 1.5;
 }
-.card-body:hover{
+.card-body:hover {
   box-shadow: 0.1rem 0.1rem 1.8rem #888;
-  
 }
-.card-body > * {
-  margin: 0.5rem 0;
-  
+
+.card {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%)
 }
 h2 {
   font-size: 2.8rem;
 }
 h3 {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
 }
-.description{
-  font-size: 1.6rem;
-  color: rgb(0, 228, 201,0.8);
+.description {
+  font-size: 1.8rem;
+  color: rgb(0, 228, 201, 0.8);
 }
 .context {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #a3a3a3;
 }
 .time {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #a3a3a3;
 }
 </style>
