@@ -76,7 +76,7 @@ h3 {
 }
 .description {
   font-size: 1.8rem;
-  color: rgb(0, 228, 201, 0.8);
+  color: rgb(0, 228, 201, 1);
 }
 .context {
   font-size: 1.6rem;

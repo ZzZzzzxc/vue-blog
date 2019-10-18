@@ -1,9 +1,16 @@
 <!--  -->
 <template>
   <div class="footer">
-    <div class="copyright">Copyright © Zhangxc Blog 2019</div>
-    <div class="power">Powered by <a href="http://www.zhangxc.cn">Zhangxc Blog</a> && Vue && Express</div>
-    <div class="msg"><a href="http://icp.chinaz.com/info?q=zhangxc.cn">粤ICP备19099522号-1</a></div>
+    <div class="content">
+      <div class="copyright">Copyright © Zhangxc Blog 2019</div>
+      <div class="power">
+        Powered by
+        <a href="http://www.zhangxc.cn">Zhangxc Blog</a> && Vue && Express
+      </div>
+      <div class="msg">
+        <a href="http://icp.chinaz.com/info?q=zhangxc.cn">粤ICP备19099522号-1</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -40,23 +47,24 @@ export default {
 <style  scoped>
 .footer {
   width: 100%;
-  padding: 10rem 30%;
-  height: 20rem;
+  height: 12rem;
   /* background: red; */
   text-align: center;
   font-size: 1.6rem;
+  position: relative;
+  /* bottom: 0; */
 }
 
-a{
-  color: black;
+.content{
+  margin: 0 auto;
+  position: absolute;
+  top: 50% ;
+  left: 50%;
+  transform: translate(-50%,-50%)
 }
-@media screen and (max-width: 799px) {
-  .footer {
-    width: 100%;
-    padding: 2rem 30%;
-    height: 10rem;
-    /* background: red; */
-    text-align: center;
-  }
+
+a {
+  color: blueviolet;
 }
+
 </style>

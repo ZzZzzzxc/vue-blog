@@ -1,16 +1,16 @@
 <!--  -->
 <template>
   <div class="page-body" v-if="$route.path==='/'">
-    <div class="newer" @click="reduce">前一页</div>
+    <div class="newer" @click="reduce" :class="{'hide':cur==1}">前一页</div>
     <ul>
       <li
-        v-for="(value,key) in pags"
+        v-for="(value,key) in list"
         :key="key"
-        :class="{'active':cur==key+1}"
-        @click="toPage(key)"
-      >{{key+1}}</li>
+        :class="{'active':cur==list[key]}"
+        @click="toPage(list[key])"
+      >{{list[key]}}</li>
     </ul>
-    <div class="older" @click="add">下一页</div>
+    <div class="older" @click="add" :class="{'hide':cur==pags}">下一页</div>
   </div>
 </template>
 
@@ -37,7 +37,23 @@ export default {
   },
   //监听属性 类似于data概念
   computed: {
-    list() {}
+    list() {
+      let c = this.cur;
+      let t = Math.ceil(this.sum / this.num);
+      let arr = [];
+      if (t === 1) {
+        return arr;
+      }
+      if (t <= 6) {
+        for (let i = 1; i <= t; i++) {
+          arr.push(i);
+        }
+        return arr;
+      }
+      if (c < 3) return [1, 2, 3, "...", t];
+      if (c >= 3 && c <= t - 2) return [1, "...", c - 1, c, c + 1, "...", t];
+      if (c > t - 2) return [1, "...", t - 2, t - 1, t];
+    }
   },
   //监控data中的数据变化
   watch: {
@@ -53,7 +69,11 @@ export default {
     },
     //切换到第几页
     toPage(index) {
-      this.cur = index + 1;
+      if (index != "...") {
+        this.cur = index;
+      } else {
+        this.$TOAST("hi");
+      }
     },
     //页码加一
     add() {
@@ -111,23 +131,33 @@ export default {
 ul {
   flex-grow: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 li {
-    
-  flex-grow: 1;
+  width: 10%;
   transition: 0.2s;
 }
 .active {
-  background:  rgb(65, 184, 131);
+  background: rgb(65, 184, 131);
+  color: white;
+}
+.active:hover {
+  color: white;
 }
 li:hover {
-  color:  rgb(65, 184, 131);
+  color: rgb(65, 184, 131);
 }
 .newer:hover {
-  color:  rgb(65, 184, 131);
+  color: rgb(65, 184, 131);
 }
 .older:hover {
-  color:  rgb(65, 184, 131);
+  color: rgb(65, 184, 131);
+}
+.hide {
+  color: #888;
+}
+.hide:hover {
+  color: #888;
+  text-decoration: line-through;
 }
 </style>
