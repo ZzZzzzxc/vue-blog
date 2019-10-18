@@ -41,8 +41,8 @@ export default {
       let c = this.cur;
       let t = Math.ceil(this.sum / this.num);
       let arr = [];
-      if (t === 1) {
-        return arr;
+      if (t < 2) {
+        return [1];
       }
       if (t <= 6) {
         for (let i = 1; i <= t; i++) {
