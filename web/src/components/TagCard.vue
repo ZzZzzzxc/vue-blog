@@ -45,7 +45,7 @@ export default {
   height: 3rem;
   line-height: 3rem;
   border: 0.1rem solid #888;
-  padding: 0 1rem;
+  padding: 0 1.6rem 0 1.2rem;
   border-radius: 3rem;
   margin: 0.8rem 0.8rem;
   font-size: 1.2rem;

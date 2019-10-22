@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="tag-card-body">
-    <div class="title">标签云<img src="../assets/cloud.png" style="display:inline-block;max-width:2.6rem" ></div>
+    <div class="title">标签云<img src="../assets/cloud.png" style="display:inline-block;max-width:2.6rem;vertical-align:middle" ></div>
     <TagCard v-for="(value,key) in tagList" :key="key" :tagList="tagList" :index="key" />
     <div class="footer line"></div>
   </div>
@@ -69,10 +69,12 @@ export default {
 }
 
 .title {
-  margin-bottom: 2rem;
+  height: 4rem;
+  line-height: 4rem;
   text-align: center;
   font-size: 1.8rem;
   font-weight: bold;
+  margin: 0 auto;
 }
 .footer {
   margin-top: 2rem;

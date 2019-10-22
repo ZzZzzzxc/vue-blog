@@ -25,13 +25,14 @@
               <li><s>添加文章目录功能</s>做的有点辣眼睛</li>
               <li>文章页添加时间轴</li>
               <li>添加搜索功能</li>
-              <li>添加评论功能</li>
+              <li><s>添加评论功能</s></li>
               <li><s>添加音乐播放器</s></li>
               <li>继续整容</li>
               <li>封装代码</li>
               <li><s>优化下性能</s></li>
             </ol>
           </div>
+          <Gitment/>
         </div>
         <div class="row-1">
           <TagList />
@@ -45,7 +46,7 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-
+import Gitment from '../components/Gitment';
 import TagList from "./TagList";
 import PersonalCard from "../components/PersonalCard";
 export default {
@@ -53,7 +54,8 @@ export default {
 
   components: {
     TagList,
-    PersonalCard
+    PersonalCard,
+    Gitment
   },
   data() {
     //这里存放数据
