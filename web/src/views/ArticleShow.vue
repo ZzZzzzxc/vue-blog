@@ -14,7 +14,7 @@
         <div><TagCard v-for="(value,key) in model.tags" :key="key" :tagList="model.tags" :index="key" /></div>
       </div>
       <div class="markdown-body" v-html="model.contentHtml" />
-      <Gitment/>
+      <Gitment :title="model.title"/>
     </div>
     <div class="show-btn" :class="this.show?'show-btn':'show-btn-unshow'" @click="isShow">{{word}}</div>
     <div class="catalog" :class="this.show?'catalog':'unshow'">

@@ -32,7 +32,6 @@
               <li><s>优化下性能</s></li>
             </ol>
           </div>
-          <Gitment/>
         </div>
         <div class="row-1">
           <TagList />
@@ -46,7 +45,6 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
-import Gitment from '../components/Gitment';
 import TagList from "./TagList";
 import PersonalCard from "../components/PersonalCard";
 export default {
@@ -55,7 +53,6 @@ export default {
   components: {
     TagList,
     PersonalCard,
-    Gitment
   },
   data() {
     //这里存放数据

@@ -8,17 +8,18 @@ import Gitment from "gitment";
 import "gitment/style/default.css";
 
 export default {
-  data() {
+  props:{
+    title:String
+  },
+  data() {  
     return {
-      width: ""
     };
   },
   created() {
-    this.width = window.screen.availWidth;
   },
   mounted() {
     const gitment = new Gitment({
-      // id: this.$route.path, // optional
+      id: this.title, // optional
       owner: "ZzZzzzxc", // GitHub ID
       repo: "vue-blog", // Github 仓库名
       oauth: {
