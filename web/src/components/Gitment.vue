@@ -18,7 +18,7 @@ export default {
   },
   mounted() {
     const gitment = new Gitment({
-      id: "http://www.zhangxc.cn", // optional
+      id: this.$route.path, // optional
       owner: "ZzZzzzxc", // GitHub ID
       repo: "vue-blog", // Github 仓库名
       oauth: {
