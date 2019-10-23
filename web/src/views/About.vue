@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div id="body">
-      <!-- 展示 -->
+    <!-- 展示 -->
     <mavon-editor
       class="md"
       :value="context"
@@ -24,7 +24,7 @@ export default {
   data() {
     //这里存放数据
     return {
-      context:'我，宣布，这一页，我还没做', //输入的数据
+      context: "我，宣布，这一页，我还没做", //输入的数据
       toolbars: {
         bold: true, // 粗体
         italic: true, // 斜体
@@ -73,7 +73,12 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
+  mounted() {
+    this.$Alert.info({
+      content: "我还没想好写啥",
+       duration: 3
+    });
+  },
   beforeCreate() {}, //生命周期 - 创建之前
   beforeMount() {}, //生命周期 - 挂载之前
   beforeUpdate() {}, //生命周期 - 更新之前
@@ -90,11 +95,11 @@ export default {
   /* height: 100%; */
   /* background: gold; */
 }
-.md{
+.md {
   display: block;
   max-width: 100%;
-  min-height:25rem;
-  min-width:25rem;
+  min-height: 25rem;
+  min-width: 25rem;
   font-size: 2rem;
 }
 </style>

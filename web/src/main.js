@@ -6,9 +6,11 @@ import router from "./router";
 import "./assets/css/base.css";
 
 //Toast
-import Toast from './components/Toast/toast'
-Vue.use(Toast)
-
+import Toast from "./components/Toast/toast";
+Vue.use(Toast);
+//Alert
+import Alert from "./components/alert/alert";
+Vue.prototype.$Alert = Alert;
 //markdown插件
 import mavonEditor from "mavon-editor";
 import "mavon-editor/dist/css/index.css";
@@ -38,9 +40,10 @@ window.onmousewheel = document.onmousewheel = scrollFunc.scrollFunc;
 //axios
 import axios from "axios";
 Vue.prototype.$http = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || '/web/api'
+  baseURL: process.env.VUE_APP_API_URL || "/web/api"
   // baseURL: "http://localhost:3000/web/api"
 });
+
 new Vue({
   router,
   render: h => h(App)

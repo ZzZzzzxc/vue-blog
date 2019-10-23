@@ -53,7 +53,10 @@ export default {
       }
       this.$nextTick(function() {
         if (!this.articles[0]) {
-          this.$TOAST("还没有东西哦👨‍✈️");
+          this.$Alert.info({
+          content: '还没有东西哦👨‍✈️',
+        });
+          // this.$TOAST("还没有东西哦👨‍✈️");
         }
       });
     },

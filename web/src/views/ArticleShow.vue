@@ -14,7 +14,6 @@
         <div><TagCard v-for="(value,key) in model.tags" :key="key" :tagList="model.tags" :index="key" /></div>
       </div>
       <div class="markdown-body" v-html="model.contentHtml" />
-      <Gitment :title="model.title"/>
     </div>
     <div class="show-btn" :class="this.show?'show-btn':'show-btn-unshow'" @click="isShow">{{word}}</div>
     <div class="catalog" :class="this.show?'catalog':'unshow'">
@@ -32,13 +31,11 @@ import catalog from "../assets/power/catalog";
 import CatalogTree from "../components/CatalogTree";
 import "../assets/css/markdown.css";
 import TagCard from '../components/TagCard'
-import Gitment from '../components/Gitment'
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
     CatalogTree,
-    TagCard,
-    Gitment
+    TagCard
   },
   props: {
     id: {}

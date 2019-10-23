@@ -57,8 +57,8 @@ export default {
     return {
       // 歌曲属性
       time: null,
-      url: null,
-      song: "正在努力搜寻歌曲。。。",
+      url: 'https://vue-blog-1259658719.cos.ap-chengdu.myqcloud.com/oulong.mp3',
+      song: "先听听这首吧，正在努力搜寻歌曲。。。",
       singer: "api是挂了吗/(ㄒoㄒ)/~~",
       //播放进度值（百分比值）
       init: 0, //初始值
@@ -191,8 +191,14 @@ export default {
       //false表示静音
       if (this.isVolume) {
         (audio.volume = 0), (this.isVolume = false);
+        this.$Alert.info({
+          content: '静音',
+        });
       } else {
         (audio.volume = 1), (this.isVolume = true);
+        this.$Alert.info({
+          content: '开启声音',
+        });
       }
     },
     //隐藏播放器
