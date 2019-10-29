@@ -146,9 +146,10 @@ export default {
 }
 .tunk {
   position: relative;
-  height: 40%;
+  height: 20%;
   top: 30%;
   background: #dadada;
+  border-radius: 1rem;
 }
 .process {
   position: absolute;
@@ -156,6 +157,7 @@ export default {
   /* width: 100%; */
   height: 100%;
   /* top: 30%; */
+  border-radius: 1rem;
   background: rgb(65, 184, 131);
 }
 .contact {
@@ -167,11 +169,18 @@ export default {
   border-radius: 50%;
   background: #ffffff;
   cursor: pointer;
-  top: -100%;
+  /* 这个top有毒 */
+  top: -250%;
   border: 0.1rem solid rgb(65, 184, 131);
+  transform: scale(0.1);
+  transition:transform 0.2s
+}
+.tunk:hover .contact{
+  transform: scale(0.6);
 }
 .contact:hover {
   background: rgb(65, 184, 131);
   box-shadow: 0.2rem 0.2rem 0.8rem #888;
+  
 }
 </style>

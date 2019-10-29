@@ -30,7 +30,8 @@
 import catalog from "../assets/power/catalog";
 import CatalogTree from "../components/CatalogTree";
 import "../assets/css/markdown.css";
-import TagCard from '../components/TagCard'
+import TagCard from '../components/TagCard';
+import { getArticle } from "../service";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {
@@ -78,9 +79,16 @@ export default {
   watch: {},
   //方法集合
   methods: {
+    // async fetch() {
+    //   const res = await this.$http.get(`articles/${this.id}`);
+    //   this.model = res.data;
+    //   this.$nextTick(function() {
+    //     this.tree = catalog.catalog();
+    //   });
+    // },
     async fetch() {
-      const res = await this.$http.get(`articles/${this.id}`);
-      this.model = res.data;
+      const res = await getArticle(this.id)
+      this.model = res;
       this.$nextTick(function() {
         this.tree = catalog.catalog();
       });

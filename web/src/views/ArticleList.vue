@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div>
-    <div class="body" >
+    <div class="body">
       <ArticleCard v-for="(value,key) in articles" :key="key" :articles="articles" :index="key" />
     </div>
   </div>
@@ -11,9 +11,10 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import ArticleCard from "../components/ArticleCard";
+import { getArticlesList, getTag } from "../service";
 export default {
   //import引入的组件需要注入到对象中才能使用
-  components: { ArticleCard,  },
+  components: { ArticleCard },
   props: {
     id: {}
   },
@@ -31,36 +32,53 @@ export default {
           lastEditTime: "",
           _id: ""
         }
-      ],
+      ]
     };
   },
   //监听属性 类似于data概念
   computed: {},
   //监控data中的数据变化
-  watch: {
-  },
+  watch: {},
   //方法集合
   methods: {
+    // async fetchArticles() {
+    //   if (this.id) {
+    //     const res = await this.$http.get(`tags/${this.id}`);
+    //     this.articles = res.data[0].articlesList;
+    //     // console.log(res.data[0].articlesList);
+    //   } else {
+    //     const res = await this.$http.get("articles/list");
+    //     this.articles = res.data;
+    //     this.articles.reverse();
+    //   }
+    //   this.$nextTick(function() {
+    //     if (!this.articles[0]) {
+    //       this.$Alert.info({
+    //       content: '还没有东西哦👨‍✈️',
+    //     });
+    //       // this.$TOAST("还没有东西哦👨‍✈️");
+    //     }
+    //   });
+    // },
     async fetchArticles() {
       if (this.id) {
-        const res = await this.$http.get(`tags/${this.id}`);
-        this.articles = res.data[0].articlesList;
-        console.log(res.data[0].articlesList);
+        const res = await getTag(this.id);
+        this.articles = res[0].articlesList;
+        // console.log(res.data[0].articlesList);
       } else {
-        const res = await this.$http.get("articles/list");
-        this.articles = res.data;
+        const res = await getArticlesList();
+        this.articles = res;
         this.articles.reverse();
       }
       this.$nextTick(function() {
         if (!this.articles[0]) {
           this.$Alert.info({
-          content: '还没有东西哦👨‍✈️',
-        });
+            content: "还没有东西哦👨‍✈️"
+          });
           // this.$TOAST("还没有东西哦👨‍✈️");
         }
       });
-    },
-
+    }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {

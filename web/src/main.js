@@ -38,11 +38,14 @@ if (document.addEventListener) {
 window.onmousewheel = document.onmousewheel = scrollFunc.scrollFunc;
 
 //axios
-import axios from "axios";
-Vue.prototype.$http = axios.create({
-  baseURL: process.env.VUE_APP_API_URL || "/web/api"
-  // baseURL: "http://localhost:3000/web/api"
-});
+// import axios from "axios";
+// Vue.prototype.$http = axios.create({
+//   baseURL: process.env.VUE_APP_API_URL || "/web/api"
+//   // baseURL: "http://localhost:3000/web/api"
+// });
+//axios封装
+import axios from './service/axios'
+Vue.prototype.$http = axios
 
 new Vue({
   router,

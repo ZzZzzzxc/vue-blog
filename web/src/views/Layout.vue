@@ -19,7 +19,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Notice from '../components/Notice'
 import BackToTop from '../components/BackToTop'
-import MusicPlayer from '../components/MusicPlayer'
+import MusicPlayer from '../components/MusicPlayer/MusicPlayer'
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: {

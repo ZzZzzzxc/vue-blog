@@ -1,6 +1,8 @@
 // const CompressionPlugin = require("compression-webpack-plugin");
 module.exports = {
+  //静态资源url，托管于腾讯云cos
   publicPath: "https://vue-blog-1259658719.cos.ap-chengdu.myqcloud.com/web/",
+  //本地调试
   // publicPath: "./",
   outputDir: __dirname + "/../server/web",
   // publicPath: process.env.NODE_ENV === 'production'

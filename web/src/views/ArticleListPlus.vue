@@ -17,7 +17,8 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import ArticleCard from "../components/ArticleCard";
-import Paging from "../components/Paging";
+import Paging from "../components/Paging/Paging";
+import { getArticlesList, getTag } from "../service";
 export default {
   //import引入的组件需要注入到对象中才能使用
   components: { ArticleCard, Paging },
@@ -58,23 +59,43 @@ export default {
   },
   //方法集合
   methods: {
+    // async fetchArticles() {
+    //   if (this.id) {
+    //     const res = await this.$http.get(`tags/${this.id}`);
+    //     this.articles = res.data[0].articlesList;
+    //     console.log(res.data[0].articlesList);
+    //   } else {
+    //     const res = await this.$http.get("articles/list");
+    //     this.articles = res.data;
+    //     this.articles.reverse();
+    //   }
+    //   this.$nextTick(function() {
+    //     this.sum = this.articles.length;
+    //     if (!this.articles[0]) {
+    //       this.$TOAST("还没有东西哦👨‍✈️");
+    //     }
+    //   });
+    // },
     async fetchArticles() {
       if (this.id) {
-        const res = await this.$http.get(`tags/${this.id}`);
-        this.articles = res.data[0].articlesList;
-        console.log(res.data[0].articlesList);
+        const res = await getTag(this.id);
+        this.articles = res[0].articlesList;
       } else {
-        const res = await this.$http.get("articles/list");
-        this.articles = res.data;
+        const res = await getArticlesList();
+        this.articles = res;
         this.articles.reverse();
       }
       this.$nextTick(function() {
         this.sum = this.articles.length;
         if (!this.articles[0]) {
-          this.$TOAST("还没有东西哦👨‍✈️");
+          this.$Alert.info({
+            content: "还没有东西哦👨‍✈️"
+          });
+          // this.$TOAST("还没有东西哦👨‍✈️");
         }
       });
     },
+
     //获取当前页码
     curChange(data) {
       this.cur = data;

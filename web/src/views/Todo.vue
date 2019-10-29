@@ -16,9 +16,10 @@
               <li><s>回到顶部</s></li>
               <li><s>markdown编辑器的图片上传</s></li>
               <li>主题颜色切换</li>
+              <li>请求加载动画</li>
               <li>404</li>
               <li>路由配置</li>
-              <li>axios封装</li>
+              <li><s>axios封装</s></li>
               <li>整个容</li>
               <li><s>挂服务器上玩</s></li>
               <li>添加文章分页功能</li>

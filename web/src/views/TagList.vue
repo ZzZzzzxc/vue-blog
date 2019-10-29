@@ -1,7 +1,13 @@
 <!--  -->
 <template>
   <div class="tag-card-body">
-    <div class="title">标签云<img src="../assets/cloud.png" style="display:inline-block;max-width:2.6rem;vertical-align:middle" ></div>
+    <div class="title">
+      标签云
+      <img
+        src="../assets/cloud.png"
+        style="display:inline-block;max-width:2.6rem;vertical-align:middle"
+      />
+    </div>
     <TagCard v-for="(value,key) in tagList" :key="key" :tagList="tagList" :index="key" />
     <div class="footer line"></div>
   </div>
@@ -10,6 +16,7 @@
 <script>
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
+import { getTagsList } from "../service";
 import TagCard from "../components/TagCard";
 export default {
   //import引入的组件需要注入到对象中才能使用
@@ -37,9 +44,13 @@ export default {
     tagSort() {
       this.tagList = this.tagList.sort((l, r) => r.num - l.num);
     },
+    // async fetchTags() {
+    //   const res = await this.$http.get("tags/list");
+    //   this.tagList = res.data;
+    //   this.tagSort();
+    // }
     async fetchTags() {
-      const res = await this.$http.get("tags/list");
-      this.tagList = res.data;
+      this.tagList = await getTagsList();
       this.tagSort();
     }
   },

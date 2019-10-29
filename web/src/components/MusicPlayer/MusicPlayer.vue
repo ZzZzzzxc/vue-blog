@@ -2,12 +2,12 @@
   <div id="body" @mouseenter="show" @mouseleave="hide()">
     <audio preload muted loop :src="url" ref="audio" id="audio">您的浏览器不支持 audio 与元素。</audio>
     <div class="player-btn" @click="playControl" v-if="isHide===false">
-      <img v-if="isHide===false&&isplay===false" src="../assets/play.png" alt />
-      <img v-if="isHide===false&&isplay===true" src="../assets/pause.png" alt />
-      <img v-if="isHide===true" src="../assets/backward.png" title="显示播放器" alt />
+      <img v-if="isHide===false&&isplay===false" src="../../assets/play.png" alt />
+      <img v-if="isHide===false&&isplay===true" src="../../assets/pause.png" alt />
+      <img v-if="isHide===true" src="../../assets/backward.png" title="显示播放器" alt />
     </div>
     <div class="show-btn" @click="show" v-if="isHide===true">
-      <img src="../assets/backward.png" title="显示播放器" alt />
+      <img src="../../assets/backward.png" title="显示播放器" alt />
     </div>
 
     <div class="player-body">
@@ -28,14 +28,14 @@
           ></ProgressBar>
         </div>
         <div class="volume" @click="isTrunOn">
-          <img v-if="isVolume===true" src="../assets/quieter.png" alt title="静音" />
-          <img v-else src="../assets/turn_off.png" title="开启声音" alt />
+          <img v-if="isVolume===true" src="../../assets/quieter.png" alt title="静音" />
+          <img v-else src="../../assets/turn_off.png" title="开启声音" alt />
         </div>
         <div class="next" @click="next">
-          <img src="../assets/next.png" title="下一首" alt />
+          <img src="../../assets/next.png" title="下一首" alt />
         </div>
         <div class="list">
-          <img src="../assets/quarter_note.png" title="歌单" alt />
+          <img src="../../assets/quarter_note.png" title="歌单" alt />
         </div>
       </div>
     </div>
@@ -46,6 +46,7 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 import ProgressBar from "./ProgressBar";
+import { getMusicsList, getMusic } from "../../service";
 export default {
   //import引入的组件需要注入到对象中才能使用
 
@@ -57,7 +58,7 @@ export default {
     return {
       // 歌曲属性
       time: null,
-      url: 'https://vue-blog-1259658719.cos.ap-chengdu.myqcloud.com/oulong.mp3',
+      url: "https://vue-blog-1259658719.cos.ap-chengdu.myqcloud.com/oulong.mp3",
       song: "先听听这首吧，正在努力搜寻歌曲。。。",
       singer: "api是挂了吗/(ㄒoㄒ)/~~",
       //播放进度值（百分比值）
@@ -118,7 +119,7 @@ export default {
       let audio = this.$refs.audio;
       await this.getMusic(val);
       await audio.play();
-      this.currentTime = 0
+      this.currentTime = 0;
       this.isplay = true;
       this.getTime();
     },
@@ -192,12 +193,12 @@ export default {
       if (this.isVolume) {
         (audio.volume = 0), (this.isVolume = false);
         this.$Alert.info({
-          content: '静音',
+          content: "静音"
         });
       } else {
         (audio.volume = 1), (this.isVolume = true);
         this.$Alert.info({
-          content: '开启声音',
+          content: "开启声音"
         });
       }
     },
@@ -216,24 +217,41 @@ export default {
       if (this.curIndex < this.musicList.length - 1) {
         this.curIndex++;
       } else {
+        this.$Alert.info({
+          content: "到底了，从头开始💤"
+        });
         this.curIndex = 0;
       }
     },
     //请求
+    // async getMusic(index) {
+    //   let id = this.musicList[index].id;
+    //   //get数据
+    //   const res = await this.$http.get(
+    //     `https://api.imjad.cn/cloudmusic/?type=song&id=` + id + `&br=320000`
+    //   );
+    //   this.url = await res.data.data[0].url;
+    //   this.song = this.musicList[index].song;
+    //   this.singer = this.musicList[index].singer;
+    // },
     async getMusic(index) {
       let id = this.musicList[index].id;
       //get数据
-      const res = await this.$http.get(
-        `https://api.imjad.cn/cloudmusic/?type=song&id=` + id + `&br=320000`
-      );
-      this.url = await res.data.data[0].url;
+      const res = await getMusic(id);
+      this.url = await res.data[0].url;
       this.song = this.musicList[index].song;
       this.singer = this.musicList[index].singer;
     },
-
+    // async fetchList() {
+    //   const res = await this.$http.get("musics/list");
+    //   this.musicList = res.data;
+    //   this.$nextTick(function() {
+    //     this.getMusic(0);
+    //   });
+    // },
     async fetchList() {
-      const res = await this.$http.get("musics/list");
-      this.musicList = res.data;
+      const res = await getMusicsList();
+      this.musicList = res;
       this.$nextTick(function() {
         this.getMusic(0);
       });
