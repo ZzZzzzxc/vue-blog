@@ -80,7 +80,9 @@ export default {
       if (this.cur < this.pags) {
         this.cur++;
       } else {
-        this.$TOAST("已经是最后一页了");
+        this.$Alert.info({
+          content: '已经是最后一页了',
+        });
       }
     },
     //页码减一
@@ -88,7 +90,9 @@ export default {
       if (this.cur > 1) {
         this.cur--;
       } else {
-        this.$TOAST("已经是第一页了");
+        this.$Alert.info({
+          content: '已经是第一页了',
+        });
       }
     }
   },

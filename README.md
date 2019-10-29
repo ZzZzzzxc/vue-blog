@@ -1,35 +1,39 @@
-# web
+# admin
 
-## Project setup
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
+后台管理
 
 ```
+cd admin
+npm i
 npm run serve
 ```
 
-### Compiles and minifies for production
+这个部分还有很大的性能优化空间；
+1. `element-ui`按需加载
+2. 路由懒加载
+3. 后端请求删减不必要的部分
+
+演示
+
+![后台演示](http://zhangxc.cn/uploads/5946f1428a98d659c397bd88b44faa33)
+
+# server
+
+express后端
 
 ```
-npm run build
+cd server
+npm i 
+npm run serve
 ```
 
-### Run your tests
+# web
 
 ```
-npm run test
+cd web
+npm i
+npm run serve
 ```
 
-### Lints and fixes files
+[直接戳进去看吧~~](http://www.zhangxc.cn)
 
-```
-npm run lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
