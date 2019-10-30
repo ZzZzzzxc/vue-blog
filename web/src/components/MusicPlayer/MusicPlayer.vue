@@ -103,6 +103,7 @@ export default {
     },
     //进度条的进度改变后
     async cur(val) {
+      let audio = this.$refs.audio;
       this.currentTime = await val;
       if (this.isplay === false) {
         audio.play();

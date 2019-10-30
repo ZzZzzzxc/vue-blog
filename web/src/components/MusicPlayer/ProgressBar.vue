@@ -83,11 +83,10 @@ export default {
     this.contact = this.$refs.contact;
     let _this = this;
     this.preX = this.contact.getBoundingClientRect().x;
+    //进度条点击
     this.process.onmousedown = function(e) {
       let preX = parseInt(_this.preX);
-      // console.log('小球位置'+preX)
       let disX = parseInt(e.clientX);
-      // console.log('点击位置'+disX)
       let newWidth = disX - preX < 0 ? preX - disX : disX - preX;
       let scale = newWidth / _this.process.offsetWidth;
       _this.value = Math.ceil((_this.max - _this.min) * scale + _this.min);
@@ -117,7 +116,6 @@ export default {
         _this.value = Math.ceil((_this.max - _this.min) * scale + _this.min);
         _this.value = Math.max(_this.value, _this.min);
         _this.value = Math.min(_this.value, _this.max);
-
         _this.$emit("moving", true);
       };
       //鼠标离开阶段
